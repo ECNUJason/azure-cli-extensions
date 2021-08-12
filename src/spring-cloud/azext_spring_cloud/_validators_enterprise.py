@@ -6,6 +6,7 @@
 # pylint: disable=too-few-public-methods, unused-argument, redefined-builtin
 
 from re import match
+import shlex
 from azure.cli.core.util import CLIError
 from azure.cli.core.azclierror import InvalidArgumentValueError
 from knack.log import get_logger
@@ -85,37 +86,34 @@ def _is_valid_buildpacks_binding_name_length(name):
 
 def validate_buildpacks_binding_properties(namespace):
     if namespace.properties is not None:
-        key_value_pairs = namespace.properties.split(' ')
-        keys = set()
-        for pair in key_value_pairs:
-            if not _is_valid_pair(pair):
-                raise InvalidArgumentValueError(
-                    'Invalid pair "{}" Each pair of Buildpacks Binding properties should follow format key=value'.format(pair))
-            key = pair[0:pair.find('=')]
-            if key in keys:
-                raise InvalidArgumentValueError('Duplicated key "{}" found for buildpacks binding properties'.format(key))
-            keys.add(key)
+        if not _is_valid_pair_list(namespace.properties):
+            raise InvalidArgumentValueError(
+                'Invalid pair "{}", each pair of Buildpacks Binding properties should follow ' \
+                'format key=value or key="value also include = symbol"' \
+                .format(namespace.secrets))
 
 
 def validate_buildpacks_binding_secrets(namespace):
     if namespace.secrets is not None:
-        key_value_pairs = namespace.secrets.split(' ')
-        keys = set()
-        for pair in key_value_pairs:
-            if not _is_valid_pair(pair):
-                raise InvalidArgumentValueError(
-                    'Invalid pair "{}", each pair of Buildpacks Binding properties should follow format key=value'.format(pair))
-            key = pair[0:pair.find('=')]
+        if not _is_valid_pair_list(namespace.secrets):
+            raise InvalidArgumentValueError(
+                'Invalid pair "{}", each pair of Buildpacks Binding secrets should follow ' \
+                'format key=value or key="value also include = symbol"' \
+                .format(namespace.secrets))
+
+
+def _is_valid_pair_list(pair_list):
+    keys = set()
+    try:
+        for token in shlex.split(pair_list):
+            key, value = token.split('=', 1)
+            print("key {}, value {}".format(key, value))
+            if len(key) == 0 or len(value) == 0:
+                raise InvalidArgumentValueError('Buildpacks Binding key or value should not be blank for pair "{}"' \
+                                                .format(token))
             if key in keys:
-                raise InvalidArgumentValueError('Duplicated key "{}" found for buildpacks binding secrets'.format(key))
+                raise InvalidArgumentValueError('Buildpacks Binding duplicated key "{}" found'.format(key))
             keys.add(key)
-
-
-def _is_valid_pair(pair):
-    if pair.count("=") != 1:
-        return False;
-    if pair.find("=") == 0:
-        return False;
-    if pair.find("=") == len(pair) - 1:
-        return False;
+    except ValueError:
+        return False
     return True
