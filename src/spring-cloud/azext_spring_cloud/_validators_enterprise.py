@@ -81,3 +81,41 @@ def _is_valid_buildpacks_binding_name_pattern(name):
 
 def _is_valid_buildpacks_binding_name_length(name):
     return len(name) <= BUILDPACKS_BINDING_NAME_MAX_LENGTH
+
+
+def validate_buildpacks_binding_properties(namespace):
+    if namespace.properties is not None:
+        key_value_pairs = namespace.properties.split(' ')
+        keys = set()
+        for pair in key_value_pairs:
+            if not _is_valid_pair(pair):
+                raise InvalidArgumentValueError(
+                    'Invalid pair "{}" Each pair of Buildpacks Binding properties should follow format key=value'.format(pair))
+            key = pair[0:pair.find('=')]
+            if key in keys:
+                raise InvalidArgumentValueError('Duplicated key "{}" found for buildpacks binding properties'.format(key))
+            keys.add(key)
+
+
+def validate_buildpacks_binding_secrets(namespace):
+    if namespace.secrets is not None:
+        key_value_pairs = namespace.secrets.split(' ')
+        keys = set()
+        for pair in key_value_pairs:
+            if not _is_valid_pair(pair):
+                raise InvalidArgumentValueError(
+                    'Invalid pair "{}", each pair of Buildpacks Binding properties should follow format key=value'.format(pair))
+            key = pair[0:pair.find('=')]
+            if key in keys:
+                raise InvalidArgumentValueError('Duplicated key "{}" found for buildpacks binding secrets'.format(key))
+            keys.add(key)
+
+
+def _is_valid_pair(pair):
+    if pair.count("=") != 1:
+        return False;
+    if pair.find("=") == 0:
+        return False;
+    if pair.find("=") == len(pair) - 1:
+        return False;
+    return True
