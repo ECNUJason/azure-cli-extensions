@@ -242,3 +242,10 @@ def handle_asc_exception(ex):
             raise CLIError(response_dict["error"]["message"])
         else:
             raise CLIError(ex)
+
+
+class BuildpacksBindingType(Enum):
+    """Type of Buildpacks Binding
+    """
+
+    APPLICATION_INSIGHTS = 'ApplicationInsights'
