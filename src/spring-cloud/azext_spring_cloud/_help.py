@@ -543,6 +543,11 @@ helps['spring-cloud application-configuration-service unbind'] = """
           text: az spring-cloud application-configuration-service unbind --app MyApp -s MyService -g MyResourceGroup
 """
 
+helps['spring-cloud build-service buildpacks-binding'] = """
+    type: group
+    short-summary: (Enterprise Tier Only) Commands to manage Buildpacks Binding
+"""
+
 helps['spring-cloud build-service buildpacks-binding create'] = """
     type: command
     short-summary: Create a buildpacks binding.
