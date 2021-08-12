@@ -7,6 +7,7 @@
 
 from re import match
 from azure.cli.core.util import CLIError
+from azure.cli.core.azclierror import InvalidArgumentValueError
 from knack.log import get_logger
 from ._resource_quantity import (
     validate_cpu as validate_and_normalize_cpu, 
@@ -15,6 +16,8 @@ from ._util_enterprise import (
     is_enterprise_tier
 )
 
+BUILDPACKS_BINDING_NAME_REGEX_PATTTERN=r"^[a-zA-Z][-a-zA-Z0-9]*[a-zA-Z0-9]$"
+BUILDPACKS_BINDING_NAME_MAX_LENGTH=19
 
 logger = get_logger(__name__)
 
@@ -61,3 +64,17 @@ def _is_valid_profile_name(profile):
 def _is_valid_app_and_profile_name(pattern):
     parts = pattern.split('/')
     return len(parts) == 2 and _is_valid_app_name(parts[0]) and _is_valid_profile_name(parts[1])
+
+def validate_buildpacks_binding_name(namespace):
+    if not _is_valid_buildpacks_binding_name_pattern(namespace.name):
+        raise InvalidArgumentValueError("Buildpacks Binding name should follow pattern {}".format(
+            BUILDPACKS_BINDING_NAME_REGEX_PATTTERN))
+    if not _is_valid_buildpacks_binding_name_length(namespace.name):
+        raise InvalidArgumentValueError("Buildpacks Binding name character number should not exceed {}".format(
+            BUILDPACKS_BINDING_NAME_MAX_LENGTH))
+
+def _is_valid_buildpacks_binding_name_pattern(name):
+    return match(BUILDPACKS_BINDING_NAME_REGEX_PATTTERN, name) is not None
+
+def _is_valid_buildpacks_binding_name_length(name):
+    return len(name) <= BUILDPACKS_BINDING_NAME_MAX_LENGTH
