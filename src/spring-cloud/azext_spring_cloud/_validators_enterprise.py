@@ -107,7 +107,6 @@ def _is_valid_pair_list(pair_list):
     try:
         for token in shlex.split(pair_list):
             key, value = token.split('=', 1)
-            print("key {}, value {}".format(key, value))
             if len(key) == 0 or len(value) == 0:
                 raise InvalidArgumentValueError('Buildpacks Binding key or value should not be blank for pair "{}"' \
                                                 .format(token))
