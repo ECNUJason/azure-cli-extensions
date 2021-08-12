@@ -16,7 +16,7 @@ from ._util_enterprise import (
     is_enterprise_tier
 )
 
-BUILDPACKS_BINDING_NAME_REGEX_PATTTERN=r"^[a-zA-Z][-a-zA-Z0-9]*[a-zA-Z0-9]$"
+BUILDPACKS_BINDING_NAME_REGEX_PATTTERN=r"(^[a-zA-Z]$|^[a-zA-Z][-a-zA-Z0-9]*[a-zA-Z0-9]$)"
 BUILDPACKS_BINDING_NAME_MAX_LENGTH=19
 
 logger = get_logger(__name__)
