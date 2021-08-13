@@ -179,8 +179,9 @@ def load_command_table(self, _):
     with self.command_group('spring-cloud build-service buildpacks-binding',
                             custom_command_type=buildpacks_binding_cmd_group,
                             exception_handler=handle_asc_exception) as g:
-        g.custom_command('create', 'buildpacks_binding_create')
-        g.custom_command('set', 'buildpacks_binding_set')
+        # create and set commands are differentiate by their parameter validators
+        g.custom_command('create', 'create_or_update_buildpacks_binding')
+        g.custom_command('set', 'create_or_update_buildpacks_binding')
         g.custom_command('show', 'buildpacks_binding_show')
         g.custom_command('delete', 'buildpacks_binding_delete')
 

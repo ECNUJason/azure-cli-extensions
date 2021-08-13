@@ -10,16 +10,14 @@ from azure.core.exceptions import ResourceNotFoundError
 from knack.util import CLIError
 
 
-def buildpacks_binding_create(cmd, client, resource_group, service,
-                              name, type, properties=None, secrets=None):
-    return _create_or_update_buildpacks_binding(client, resource_group, service, name,
-                                                type, properties, secrets)
-
-
-def buildpacks_binding_set(cmd, client, resource_group, service,
-                           name, type, properties=None, secrets=None):
-    return _create_or_update_buildpacks_binding(client, resource_group, service, name,
-                                                type, properties, secrets)
+def create_or_update_buildpacks_binding(cmd, client, resource_group, service,
+                                        name, type, properties=None, secrets=None):
+    binding_resource = _build_buildpacks_binding_resource(type, properties, secrets)
+    return client.buildpacks_binding.create_or_update(resource_group,
+                                                      service,
+                                                      DEFAULT_BUILD_SERVICE_NAME,
+                                                      name,
+                                                      binding_resource)
 
 
 def buildpacks_binding_show(cmd, client, resource_group, service, name):
@@ -36,12 +34,3 @@ def _build_buildpacks_binding_resource(binding_type, properties_dict, secrets_di
     binding_properties = models.BuildpacksBindingProperties(binding_type=binding_type,
                                                             launch_properties=launch_properties)
     return models.BuildpacksBindingResource(properties=binding_properties)
-
-
-def _create_or_update_buildpacks_binding(client, resource_group, service, name, type, properties, secrets):
-    binding_resource = _build_buildpacks_binding_resource(type, properties, secrets)
-    return client.buildpacks_binding.create_or_update(resource_group,
-                                                      service,
-                                                      DEFAULT_BUILD_SERVICE_NAME,
-                                                      name,
-                                                      binding_resource)
