@@ -7,9 +7,7 @@
 import shlex
 from ._enterprise import DEFAULT_BUILD_SERVICE_NAME
 from ._exception_enterprise import BuildpacksBindingOperationError
-from ._util_enterprise import is_enterprise_tier
 from .vendored_sdks.appplatform.v2022_05_01_preview import models
-from knack.log import get_logger
 
 
 def buildpacks_binding_create(cmd, client, resource_group, service,
