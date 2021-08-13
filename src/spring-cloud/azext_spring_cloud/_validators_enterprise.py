@@ -6,9 +6,9 @@
 # pylint: disable=too-few-public-methods, unused-argument, redefined-builtin
 
 from re import match
-import shlex
 from azure.cli.core.util import CLIError
 from azure.cli.core.azclierror import InvalidArgumentValueError
+from azure.cli.core.commands.validators import validate_tag
 from knack.log import get_logger
 from ._resource_quantity import (
     validate_cpu as validate_and_normalize_cpu, 
@@ -85,34 +85,18 @@ def _is_valid_buildpacks_binding_name_length(name):
 
 
 def validate_buildpacks_binding_properties(namespace):
-    if namespace.properties is not None:
-        if not _is_valid_pair_list(namespace.properties):
-            raise InvalidArgumentValueError(
-                'Invalid pair "{}", each pair of Buildpacks Binding properties should follow '
-                'format key=value or key="value also include = symbol"'
-                .format(namespace.secrets))
+    """ Extracts multiple space-separated properties in key[=value] format """
+    if isinstance(namespace.properties, list):
+        properties_dict = {}
+        for item in namespace.properties:
+            properties_dict.update(validate_tag(item))
+        namespace.properties = properties_dict
 
 
 def validate_buildpacks_binding_secrets(namespace):
-    if namespace.secrets is not None:
-        if not _is_valid_pair_list(namespace.secrets):
-            raise InvalidArgumentValueError(
-                'Invalid pair "{}", each pair of Buildpacks Binding secrets should follow '
-                'format key=value or key="value also include = symbol"'
-                .format(namespace.secrets))
-
-
-def _is_valid_pair_list(pair_list):
-    keys = set()
-    try:
-        for token in shlex.split(pair_list):
-            key, value = token.split('=', 1)
-            if len(key) == 0 or len(value) == 0:
-                raise InvalidArgumentValueError('Buildpacks Binding key or value should not be blank for pair "{}"'
-                                                .format(token))
-            if key in keys:
-                raise InvalidArgumentValueError('Buildpacks Binding duplicated key "{}" found'.format(key))
-            keys.add(key)
-    except ValueError:
-        return False
-    return True
+    """ Extracts multiple space-separated secrets in key[=value] format """
+    if isinstance(namespace.secrets, list):
+        secrets_dict = {}
+        for item in namespace.secrets:
+            secrets_dict.update(validate_tag(item))
+        namespace.secrets = secrets_dict

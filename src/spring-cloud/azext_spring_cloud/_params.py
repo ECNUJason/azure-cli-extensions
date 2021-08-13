@@ -29,6 +29,15 @@ env_type = CLIArgumentType(
     validator=validate_env, help="Space-separated environment variables in 'key[=value]' format.", nargs='*')
 service_name_type = CLIArgumentType(options_list=['--service', '-s'], help='Name of Azure Spring Cloud, you can configure the default service using az configure --defaults spring-cloud=<name>.', configured_default='spring-cloud')
 app_name_type = CLIArgumentType(help='App name, you can configure the default app using az configure --defaults spring-cloud-app=<name>.', validator=validate_app_name, configured_default='spring-cloud-app')
+buildpacks_binding_properties_type = CLIArgumentType(help='Non-sensitive properties for launchProperties. '
+                                                          'Format "key[=value]".',
+                                                     nargs='*',
+                                                     validator=validate_buildpacks_binding_properties)
+buildpacks_binding_secrets_type = CLIArgumentType(help='Sensitive properties for launchProperties. '
+                                                       'Once put,it will be encrypted and never return to user. '
+                                                       'Format "key[=value]".',
+                                                  nargs="*",
+                                                  validator=validate_buildpacks_binding_secrets)
 
 
 # pylint: disable=too-many-statements
@@ -328,11 +337,9 @@ def load_arguments(self, _):
                        arg_type=get_enum_type(v20220501_preview_AppPlatformEnums.BindingType),
                        help='Required type for buildpacks binding.')
             c.argument('properties',
-                       help='Non-sensitive properties for launchProperties. Sample "key1=val1 key2=val2"',
-                       validator=validate_buildpacks_binding_properties)
+                       buildpacks_binding_properties_type)
             c.argument('secrets',
-                       help='Sensitive properties for launchProperties. Once put,it will be encrypted and never return to user. Sample "sec1=val1 sec2=val2"',
-                       validator=validate_buildpacks_binding_secrets)
+                       buildpacks_binding_secrets_type)
 
     for scope in ['spring-cloud build-service buildpacks-binding create',
                   'spring-cloud build-service buildpacks-binding set',

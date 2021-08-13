@@ -4,7 +4,6 @@
 # --------------------------------------------------------------------------------------------
 
 # pylint: disable=wrong-import-order
-import shlex
 from ._enterprise import DEFAULT_BUILD_SERVICE_NAME
 from .vendored_sdks.appplatform.v2022_05_01_preview import models
 from knack.util import CLIError
@@ -31,18 +30,12 @@ def buildpacks_binding_delete(cmd, client, resource_group, service, name):
     return _delete_buildpacks_binding(client, resource_group, service, name)
 
 
-def _build_buildpacks_binding_resource(binding_type, launch_props_properties_str, launch_props_secrets_str):
-    launch_props_properties = _kv_pair_list_to_dict(launch_props_properties_str)
-    launch_props_secrets = _kv_pair_list_to_dict(launch_props_secrets_str)
-    launch_properties = models.BuildpacksBindingLaunchProperties(properties=launch_props_properties,
-                                                                 secrets=launch_props_secrets)
+def _build_buildpacks_binding_resource(binding_type, properties_dict, secrets_dict):
+    launch_properties = models.BuildpacksBindingLaunchProperties(properties=properties_dict,
+                                                                 secrets=secrets_dict)
     binding_properties = models.BuildpacksBindingProperties(binding_type=binding_type,
                                                             launch_properties=launch_properties)
     return models.BuildpacksBindingResource(properties=binding_properties)
-
-
-def _kv_pair_list_to_dict(kv_pairs_seprated_by_space):
-    return dict(token.split('=', 1) for token in shlex.split(kv_pairs_seprated_by_space))
 
 
 def _create_or_update_buildpacks_binding(client, resource_group, service, name, binding_resource):

@@ -555,11 +555,11 @@ helps['spring-cloud build-service buildpacks-binding create'] = """
         - name: Create a buildpacks binding without properties or secrets.
           text: az spring-cloud build-service buildpacks-binding create --name first-binding --type ApplicationInsights
         - name: Create a buildpacks binding with only secrets.
-          text: az spring-cloud build-service buildpacks-binding create --name first-binding --type ApplicationInsights --secrets "k1=v1 k2=v2"
+          text: az spring-cloud build-service buildpacks-binding create --name first-binding --type ApplicationInsights --secrets k1=v1 k2=v2
         - name: Create a buildpacks binding with only properties.
-          text: az spring-cloud build-service buildpacks-binding create --name first-binding --type ApplicationInsights --properties "a=b c=d"
+          text: az spring-cloud build-service buildpacks-binding create --name first-binding --type ApplicationInsights --properties a=b c=d
         - name: Create a buildpacks binding with properties and secrets.
-          text: az spring-cloud build-service buildpacks-binding create --name first-binding --type ApplicationInsights --properties "a=b c=d" --secrets "k1=v1 k2=v2"
+          text: az spring-cloud build-service buildpacks-binding create --name first-binding --type ApplicationInsights --properties a=b c=d --secrets k1=v1 k2=v2
 """
 
 helps['spring-cloud build-service buildpacks-binding set'] = """
@@ -567,7 +567,7 @@ helps['spring-cloud build-service buildpacks-binding set'] = """
     short-summary: Set a buildpacks binding.
     examples:
         - name: Set a buildpacks binding with properties and secrets.
-          text: az spring-cloud build-service buildpacks-binding set --name first-binding --type ApplicationInsights --properties "a=b c=d" --secrets "k1=v1 k2=v2"
+          text: az spring-cloud build-service buildpacks-binding set --name first-binding --type ApplicationInsights --properties a=b c=d --secrets k1=v1 k2=v2
 """
 
 helps['spring-cloud build-service buildpacks-binding show'] = """
