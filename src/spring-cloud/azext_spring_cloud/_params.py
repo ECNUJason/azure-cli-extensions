@@ -16,7 +16,7 @@ from ._validators import (validate_env, validate_cosmos_type, validate_resource_
 from ._validators_enterprise import (validate_config_file_patterns, validate_cpu, validate_memory,
                                      validate_buildpacks_binding_name, validate_buildpacks_binding_properties,
                                      validate_buildpacks_binding_secrets, only_support_enterprise)
-from ._utils import ApiType, BuildpacksBindingType
+from ._utils import (ApiType, BuildpacksBindingType)
 
 from .vendored_sdks.appplatform.v2020_07_01.models import RuntimeVersion, TestKeyType
 
