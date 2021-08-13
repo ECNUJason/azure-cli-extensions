@@ -6,8 +6,8 @@
 # pylint: disable=wrong-import-order
 import shlex
 from ._enterprise import DEFAULT_BUILD_SERVICE_NAME
-from ._exception_enterprise import BuildpacksBindingOperationError
 from .vendored_sdks.appplatform.v2022_05_01_preview import models
+from knack.util import CLIError
 
 
 def buildpacks_binding_create(cmd, client, resource_group, service,
@@ -27,7 +27,7 @@ def buildpacks_binding_set(cmd, client, resource_group, service,
 def buildpacks_binding_show(cmd, client, resource_group, service, name):
     binding_resource = _get_buildpacks_binding(client, resource_group, service, name)
     if binding_resource is None:
-        raise BuildpacksBindingOperationError("Not exist")
+        raise CLIError("Not exist")
 
 
 def buildpacks_binding_delete(cmd, client, resource_group, service, name):
@@ -67,7 +67,7 @@ def _delete_buildpacks_binding(client, resource_group, service, binding_name):
 def _assert_binding_not_exists(client, resource_group, service, binding_name):
     binding_resource = _get_buildpacks_binding(client, resource_group, service, binding_name)
     if binding_resource is not None:
-        raise BuildpacksBindingOperationError('Buildpacks Binding {} already exists '
+        raise CLIError('Buildpacks Binding {} already exists '
                                               'in resource group {}, service {}'
                                               .format(binding_name, resource_group, service))
 
@@ -75,6 +75,6 @@ def _assert_binding_not_exists(client, resource_group, service, binding_name):
 def _assert_binding_exists(client, resource_group, service, binding_name):
     binding_resource = _get_buildpacks_binding(client, resource_group, service, binding_name)
     if binding_resource is None:
-        raise BuildpacksBindingOperationError('Buildpacks Binding {} does not exist '
+        raise CLIError('Buildpacks Binding {} does not exist '
                                               'in resource group {}, service {}'
                                               .format(binding_name, resource_group, service))
