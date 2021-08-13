@@ -16,8 +16,9 @@ from ._util_enterprise import (
     is_enterprise_tier
 )
 
-BUILDPACKS_BINDING_NAME_REGEX_PATTTERN=r"(^[a-zA-Z]$|^[a-zA-Z][-a-zA-Z0-9]*[a-zA-Z0-9]$)"
-BUILDPACKS_BINDING_NAME_MAX_LENGTH=19
+
+# Minimal length 1, max Length 19
+BUILDPACKS_BINDING_NAME_REGEX_PATTTERN=r"(^[a-zA-Z]$|^[a-zA-Z][-a-zA-Z0-9]{0,17}[a-zA-Z0-9]$)"
 
 logger = get_logger(__name__)
 
@@ -70,17 +71,10 @@ def validate_buildpacks_binding_name(namespace):
     if not _is_valid_buildpacks_binding_name_pattern(namespace.name):
         raise CLIError("Buildpacks Binding name should follow pattern {}"
                        .format(BUILDPACKS_BINDING_NAME_REGEX_PATTTERN))
-    if not _is_valid_buildpacks_binding_name_length(namespace.name):
-        raise CLIError("Buildpacks Binding name character number should not exceed {}"
-                       .format(BUILDPACKS_BINDING_NAME_MAX_LENGTH))
 
 
 def _is_valid_buildpacks_binding_name_pattern(name):
     return match(BUILDPACKS_BINDING_NAME_REGEX_PATTTERN, name) is not None
-
-
-def _is_valid_buildpacks_binding_name_length(name):
-    return len(name) <= BUILDPACKS_BINDING_NAME_MAX_LENGTH
 
 
 def validate_buildpacks_binding_properties(namespace):
