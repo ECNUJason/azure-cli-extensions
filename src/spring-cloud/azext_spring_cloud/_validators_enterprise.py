@@ -8,12 +8,18 @@
 from re import match
 from azure.cli.core.util import CLIError
 from azure.cli.core.commands.validators import validate_tag
+from azure.cli.core.commands.client_factory import get_mgmt_service_client
+from azure.core.exceptions import ResourceNotFoundError
 from knack.log import get_logger
+from ._enterprise import DEFAULT_BUILD_SERVICE_NAME
 from ._resource_quantity import (
     validate_cpu as validate_and_normalize_cpu, 
     validate_memory as validate_and_normalize_memory)
 from ._util_enterprise import (
     is_enterprise_tier
+)
+from .vendored_sdks.appplatform.v2022_05_01_preview import (
+    AppPlatformManagementClient as AppPlatformManagementClient_20220501preview
 )
 
 
@@ -93,3 +99,45 @@ def validate_buildpacks_binding_secrets(namespace):
         for item in namespace.secrets:
             secrets_dict.update(validate_tag(item))
         namespace.secrets = secrets_dict
+
+
+def enterprise_only_and_binding_not_exist(cmd, namespace):
+    only_support_enterprise(cmd, namespace)
+    client = get_mgmt_service_client(cmd.cli_ctx, AppPlatformManagementClient_20220501preview)
+    _validate_binding_not_exists(client,
+                                 namespace.resource_group,
+                                 namespace.service,
+                                 namespace.name)
+
+
+def enterprise_only_and_binding_exist(cmd, namespace):
+    only_support_enterprise(cmd, namespace)
+    client = get_mgmt_service_client(cmd.cli_ctx, AppPlatformManagementClient_20220501preview)
+    _validate_binding_exists(client,
+                             namespace.resource_group,
+                             namespace.service,
+                             namespace.name)
+
+
+def _validate_binding_not_exists(client, resource_group, service, binding_name):
+    try:
+        binding_resource = client.buildpacks_binding.get(resource_group,
+                                                         service,
+                                                         DEFAULT_BUILD_SERVICE_NAME,
+                                                         binding_name)
+        if binding_resource is not None:
+            raise CLIError('Buildpacks Binding {} already exists '
+                           'in resource group {}, service {}. You can edit it by set command.'
+                           .format(binding_name, resource_group, service))
+    except ResourceNotFoundError as e:
+        # Excepted case
+        pass
+
+
+def _validate_binding_exists(client, resource_group, service, binding_name):
+    try:
+        client.buildpacks_binding.get(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, binding_name)
+    except ResourceNotFoundError as e:
+        raise CLIError('Buildpacks Binding {} does not exist '
+                       'in resource group {}, service {}. Please create before set.'
+                       .format(binding_name, resource_group, service))

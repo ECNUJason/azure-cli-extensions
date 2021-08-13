@@ -15,7 +15,8 @@ from ._validators import (validate_env, validate_cosmos_type, validate_resource_
                           validate_instance_count)
 from ._validators_enterprise import (validate_config_file_patterns, validate_cpu, validate_memory,
                                      validate_buildpacks_binding_name, validate_buildpacks_binding_properties,
-                                     validate_buildpacks_binding_secrets, only_support_enterprise)
+                                     validate_buildpacks_binding_secrets, only_support_enterprise,
+                                     enterprise_only_and_binding_not_exist, enterprise_only_and_binding_exist)
 from ._utils import ApiType
 
 from .vendored_sdks.appplatform.v2020_07_01.models import RuntimeVersion, TestKeyType
@@ -346,5 +347,15 @@ def load_arguments(self, _):
                   'spring-cloud build-service buildpacks-binding show',
                   'spring-cloud build-service buildpacks-binding delete']:
         with self.argument_context(scope) as c:
-            c.argument('service', service_name_type, validator=only_support_enterprise)
             c.argument('name', help='Name for buildpacks binding.', validator=validate_buildpacks_binding_name)
+
+    for scope in ['spring-cloud build-service buildpacks-binding show',
+                  'spring-cloud build-service buildpacks-binding delete']:
+        with self.argument_context(scope) as c:
+            c.argument('service', service_name_type, validator=only_support_enterprise)
+
+    with self.argument_context('spring-cloud build-service buildpacks-binding create') as c:
+        c.argument('service', service_name_type, validator=enterprise_only_and_binding_not_exist)
+
+    with self.argument_context('spring-cloud build-service buildpacks-binding set') as c:
+        c.argument('service', service_name_type, validator=enterprise_only_and_binding_exist)
