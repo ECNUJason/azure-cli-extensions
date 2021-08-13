@@ -65,17 +65,18 @@ def _get_buildpacks_binding(client, resource_group, service, binding_name):
 def _delete_buildpacks_binding(client, resource_group, service, binding_name):
     client.buildpacks_binding.delete(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, binding_name)
 
+
 def _assert_binding_not_exists(client, resource_group, service, binding_name):
     binding_resource = _get_buildpacks_binding(client, resource_group, service, binding_name)
     if binding_resource is not None:
-        raise BuildpacksBindingOperationError('Buildpacks Binding {} already exists ' \
-                                              'in resource group {}, service {}' \
+        raise BuildpacksBindingOperationError('Buildpacks Binding {} already exists '
+                                              'in resource group {}, service {}'
                                               .format(binding_name, resource_group, service))
 
 
 def _assert_binding_exists(client, resource_group, service, binding_name):
     binding_resource = _get_buildpacks_binding(client, resource_group, service, binding_name)
     if binding_resource is None:
-        raise BuildpacksBindingOperationError('Buildpacks Binding {} does not exist ' \
-                                              'in resource group {}, service {}' \
+        raise BuildpacksBindingOperationError('Buildpacks Binding {} does not exist '
+                                              'in resource group {}, service {}'
                                               .format(binding_name, resource_group, service))
