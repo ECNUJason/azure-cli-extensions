@@ -34,7 +34,7 @@ We need 2 prefix number for encoding prefix for build_service_name and buildpack
 So there are at most 38 chars for build_service_name and buildpacks_binding_name in total.
 We leave 19 character each for build_service_name and buildpacks_binding_name
 """
-BUILDPACKS_BINDING_NAME_REGEX_PATTTERN=r"(^[a-zA-Z]$|^[a-zA-Z][-a-zA-Z0-9]{0,17}[a-zA-Z]$)"
+BUILDPACKS_BINDING_NAME_REGEX_PATTTERN = r"(^[a-zA-Z]$|^[a-zA-Z][-a-zA-Z0-9]{0,17}[a-zA-Z]$)"
 
 logger = get_logger(__name__)
 
@@ -153,7 +153,7 @@ def _validate_binding_not_exists(client, resource_group, service, binding_name):
             raise CLIError('Buildpacks Binding {} already exists '
                            'in resource group {}, service {}. You can edit it by set command.'
                            .format(binding_name, resource_group, service))
-    except ResourceNotFoundError as e:
+    except ResourceNotFoundError:
         # Excepted case
         pass
 
@@ -161,7 +161,7 @@ def _validate_binding_not_exists(client, resource_group, service, binding_name):
 def _validate_binding_exists(client, resource_group, service, binding_name):
     try:
         client.buildpacks_binding.get(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, binding_name)
-    except ResourceNotFoundError as e:
+    except ResourceNotFoundError:
         raise CLIError('Buildpacks Binding {} does not exist '
                        'in resource group {}, service {}. Please create before set.'
                        .format(binding_name, resource_group, service))

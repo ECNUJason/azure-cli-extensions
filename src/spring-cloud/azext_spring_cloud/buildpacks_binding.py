@@ -6,8 +6,6 @@
 # pylint: disable=wrong-import-order
 from ._enterprise import DEFAULT_BUILD_SERVICE_NAME
 from .vendored_sdks.appplatform.v2022_05_01_preview import models
-from azure.core.exceptions import ResourceNotFoundError
-from knack.util import CLIError
 
 
 def create_or_update_buildpacks_binding(cmd, client, resource_group, service,
