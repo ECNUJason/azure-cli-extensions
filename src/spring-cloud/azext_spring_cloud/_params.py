@@ -35,7 +35,7 @@ buildpacks_binding_properties_type = CLIArgumentType(help='Non-sensitive propert
                                                      nargs='*',
                                                      validator=validate_buildpacks_binding_properties)
 buildpacks_binding_secrets_type = CLIArgumentType(help='Sensitive properties for launchProperties. '
-                                                       'Once put,it will be encrypted and never return to user. '
+                                                       'Once put, it will be encrypted and never return to user. '
                                                        'Format "key[=value]".',
                                                   nargs="*",
                                                   validator=validate_buildpacks_binding_secrets)
