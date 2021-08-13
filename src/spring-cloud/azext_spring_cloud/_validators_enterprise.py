@@ -88,8 +88,8 @@ def validate_buildpacks_binding_properties(namespace):
     if namespace.properties is not None:
         if not _is_valid_pair_list(namespace.properties):
             raise InvalidArgumentValueError(
-                'Invalid pair "{}", each pair of Buildpacks Binding properties should follow ' \
-                'format key=value or key="value also include = symbol"' \
+                'Invalid pair "{}", each pair of Buildpacks Binding properties should follow '
+                'format key=value or key="value also include = symbol"'
                 .format(namespace.secrets))
 
 
@@ -97,8 +97,8 @@ def validate_buildpacks_binding_secrets(namespace):
     if namespace.secrets is not None:
         if not _is_valid_pair_list(namespace.secrets):
             raise InvalidArgumentValueError(
-                'Invalid pair "{}", each pair of Buildpacks Binding secrets should follow ' \
-                'format key=value or key="value also include = symbol"' \
+                'Invalid pair "{}", each pair of Buildpacks Binding secrets should follow '
+                'format key=value or key="value also include = symbol"'
                 .format(namespace.secrets))
 
 
@@ -108,7 +108,7 @@ def _is_valid_pair_list(pair_list):
         for token in shlex.split(pair_list):
             key, value = token.split('=', 1)
             if len(key) == 0 or len(value) == 0:
-                raise InvalidArgumentValueError('Buildpacks Binding key or value should not be blank for pair "{}"' \
+                raise InvalidArgumentValueError('Buildpacks Binding key or value should not be blank for pair "{}"'
                                                 .format(token))
             if key in keys:
                 raise InvalidArgumentValueError('Buildpacks Binding duplicated key "{}" found'.format(key))
