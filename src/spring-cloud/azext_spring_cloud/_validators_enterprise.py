@@ -7,7 +7,6 @@
 
 from re import match
 from azure.cli.core.util import CLIError
-from azure.cli.core.azclierror import InvalidArgumentValueError
 from azure.cli.core.commands.validators import validate_tag
 from knack.log import get_logger
 from ._resource_quantity import (
@@ -69,11 +68,11 @@ def _is_valid_app_and_profile_name(pattern):
 
 def validate_buildpacks_binding_name(namespace):
     if not _is_valid_buildpacks_binding_name_pattern(namespace.name):
-        raise InvalidArgumentValueError("Buildpacks Binding name should follow pattern {}".format(
-            BUILDPACKS_BINDING_NAME_REGEX_PATTTERN))
+        raise CLIError("Buildpacks Binding name should follow pattern {}"
+                       .format(BUILDPACKS_BINDING_NAME_REGEX_PATTTERN))
     if not _is_valid_buildpacks_binding_name_length(namespace.name):
-        raise InvalidArgumentValueError("Buildpacks Binding name character number should not exceed {}".format(
-            BUILDPACKS_BINDING_NAME_MAX_LENGTH))
+        raise CLIError("Buildpacks Binding name character number should not exceed {}"
+                       .format(BUILDPACKS_BINDING_NAME_MAX_LENGTH))
 
 
 def _is_valid_buildpacks_binding_name_pattern(name):
