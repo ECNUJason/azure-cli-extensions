@@ -24,6 +24,7 @@ LOG_RUNNING_PROMPT = "This command usually takes minutes to run. Add '--verbose'
 
 DEFAULT_BUILD_SERVICE_NAME = "default"
 
+
 def app_get_enterprise(cmd, client, resource_group, service, name):
     app = client.apps.get(resource_group, service, name)
     app.properties.activeDeployment = _get_active_deployment(client, resource_group, service, name)
