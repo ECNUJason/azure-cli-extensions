@@ -347,4 +347,4 @@ def load_arguments(self, _):
                   'spring-cloud build-service buildpacks-binding delete']:
         with self.argument_context(scope) as c:
             c.argument('service', service_name_type, validator=only_support_enterprise)
-            c.argument('name', help='Reqired name for buildpacks binding.', validator=validate_buildpacks_binding_name)
+            c.argument('name', help='Name for buildpacks binding.', validator=validate_buildpacks_binding_name)
