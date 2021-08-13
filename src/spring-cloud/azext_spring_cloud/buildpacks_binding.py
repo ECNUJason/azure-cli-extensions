@@ -6,6 +6,7 @@
 # pylint: disable=wrong-import-order
 from ._enterprise import DEFAULT_BUILD_SERVICE_NAME
 from .vendored_sdks.appplatform.v2022_05_01_preview import models
+from azure.core.exceptions import ResourceNotFoundError
 from knack.util import CLIError
 
 
@@ -22,7 +23,12 @@ def buildpacks_binding_set(cmd, client, resource_group, service,
 
 
 def buildpacks_binding_show(cmd, client, resource_group, service, name):
-    return _get_buildpacks_binding(client, resource_group, service, name)
+    try:
+        return client.buildpacks_binding.get(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, name)
+    except ResourceNotFoundError as e:
+        raise CLIError("Buildpacks Binding {} is not existed in resource group {}, service {}"
+                       .format(name, resource_group, service))
+
 
 def buildpacks_binding_delete(cmd, client, resource_group, service, name):
     return _delete_buildpacks_binding(client, resource_group, service, name)
