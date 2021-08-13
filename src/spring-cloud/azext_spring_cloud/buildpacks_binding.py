@@ -25,10 +25,7 @@ def buildpacks_binding_set(cmd, client, resource_group, service,
 
 
 def buildpacks_binding_show(cmd, client, resource_group, service, name):
-    binding_resource = _get_buildpacks_binding(client, resource_group, service, name)
-    if binding_resource is None:
-        raise CLIError("Not exist")
-
+    return _get_buildpacks_binding(client, resource_group, service, name)
 
 def buildpacks_binding_delete(cmd, client, resource_group, service, name):
     return _delete_buildpacks_binding(client, resource_group, service, name)
