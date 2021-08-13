@@ -19,23 +19,6 @@ from ._util_enterprise import (
 )
 
 
-"""
-Define the binding name of buildpacks. The binding name have some restrictions from kpack as below.
-
-At most 63 chars.
-Have one fixed prefix binding-metadata- 17 char, only 46 chars left.
-Must consist of alphabetic characters or '-', and must start and end with an alphabetic character
-
-We need encode build_service_name, buildpacks_binding_name and type.
-We need 2 '-' for separator, 44 chars left.
-We need 2 int value for type, 42 chars left.
-We need 2 prefix number for encoding prefix for build_service_name and buildpacks_binding_name, 38 char left.
-
-So there are at most 38 chars for build_service_name and buildpacks_binding_name in total.
-We leave 19 character each for build_service_name and buildpacks_binding_name
-"""
-BUILDPACKS_BINDING_NAME_REGEX_PATTTERN = r"(^[a-zA-Z]$|^[a-zA-Z][-a-zA-Z0-9]{0,17}[a-zA-Z]$)"
-
 logger = get_logger(__name__)
 
 def only_support_enterprise(cmd, namespace):
@@ -95,16 +78,6 @@ def _is_valid_profile_name(profile):
 def _is_valid_app_and_profile_name(pattern):
     parts = pattern.split('/')
     return len(parts) == 2 and _is_valid_app_name(parts[0]) and _is_valid_profile_name(parts[1])
-
-
-def validate_buildpacks_binding_name(namespace):
-    if not _is_valid_buildpacks_binding_name_pattern(namespace.name):
-        raise CLIError("Buildpacks Binding name should follow pattern {}"
-                       .format(BUILDPACKS_BINDING_NAME_REGEX_PATTTERN))
-
-
-def _is_valid_buildpacks_binding_name_pattern(name):
-    return match(BUILDPACKS_BINDING_NAME_REGEX_PATTTERN, name) is not None
 
 
 def validate_buildpacks_binding_properties(namespace):

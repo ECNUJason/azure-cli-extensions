@@ -14,7 +14,7 @@ from ._validators import (validate_env, validate_cosmos_type, validate_resource_
                           validate_tracing_parameters, validate_app_insights_parameters, validate_java_agent_parameters,
                           validate_instance_count)
 from ._validators_enterprise import (validate_config_file_patterns, validate_cpu, validate_memory,
-                                     validate_buildpacks_binding_name, validate_buildpacks_binding_properties,
+                                     validate_buildpacks_binding_properties,
                                      validate_buildpacks_binding_secrets, only_support_enterprise,
                                      enterprise_only_and_binding_not_exist, enterprise_only_and_binding_exist,
                                      validate_git_uri, validate_acs_patterns)
@@ -353,7 +353,7 @@ def load_arguments(self, _):
                   'spring-cloud build-service buildpacks-binding show',
                   'spring-cloud build-service buildpacks-binding delete']:
         with self.argument_context(scope) as c:
-            c.argument('name', help='Name for buildpacks binding.', validator=validate_buildpacks_binding_name)
+            c.argument('name', help='Name for buildpacks binding.')
 
     for scope in ['spring-cloud build-service buildpacks-binding show',
                   'spring-cloud build-service buildpacks-binding delete']:
