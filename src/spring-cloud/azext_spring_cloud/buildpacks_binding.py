@@ -31,7 +31,7 @@ def buildpacks_binding_show(cmd, client, resource_group, service, name):
 
 
 def buildpacks_binding_delete(cmd, client, resource_group, service, name):
-    return _delete_buildpacks_binding(client, resource_group, service, name)
+    return client.buildpacks_binding.delete(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, name)
 
 
 def _build_buildpacks_binding_resource(binding_type, properties_dict, secrets_dict):
@@ -53,8 +53,3 @@ def _create_or_update_buildpacks_binding(client, resource_group, service, name, 
 
 def _get_buildpacks_binding(client, resource_group, service, binding_name):
     return client.buildpacks_binding.get(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, binding_name)
-
-
-def _delete_buildpacks_binding(client, resource_group, service, binding_name):
-    client.buildpacks_binding.delete(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, binding_name)
-
