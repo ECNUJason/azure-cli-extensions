@@ -23,11 +23,7 @@ def buildpacks_binding_set(cmd, client, resource_group, service,
 
 
 def buildpacks_binding_show(cmd, client, resource_group, service, name):
-    try:
-        return client.buildpacks_binding.get(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, name)
-    except ResourceNotFoundError as e:
-        raise CLIError("Buildpacks Binding {} is not existed in resource group {}, service {}"
-                       .format(name, resource_group, service))
+    return client.buildpacks_binding.get(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, name)
 
 
 def buildpacks_binding_delete(cmd, client, resource_group, service, name):
