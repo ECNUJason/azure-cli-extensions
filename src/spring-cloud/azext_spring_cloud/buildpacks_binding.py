@@ -6,6 +6,7 @@
 # pylint: disable=wrong-import-order
 from ._enterprise import DEFAULT_BUILD_SERVICE_NAME
 from .vendored_sdks.appplatform.v2022_05_01_preview import models
+from azure.core.exceptions import ResourceNotFoundError
 from knack.util import CLIError
 
 
@@ -55,16 +56,21 @@ def _delete_buildpacks_binding(client, resource_group, service, binding_name):
 
 
 def _assert_binding_not_exists(client, resource_group, service, binding_name):
-    binding_resource = _get_buildpacks_binding(client, resource_group, service, binding_name)
-    if binding_resource is not None:
-        raise CLIError('Buildpacks Binding {} already exists '
-                                              'in resource group {}, service {}'
-                                              .format(binding_name, resource_group, service))
+    try:
+        binding_resource = _get_buildpacks_binding(client, resource_group, service, binding_name)
+        if binding_resource is not None:
+            raise CLIError('Buildpacks Binding {} already exists '
+                           'in resource group {}, service {}. You can edit it by set command.'
+                           .format(binding_name, resource_group, service))
+    except ResourceNotFoundError as e:
+        # Excepted case
+        pass
 
 
 def _assert_binding_exists(client, resource_group, service, binding_name):
-    binding_resource = _get_buildpacks_binding(client, resource_group, service, binding_name)
-    if binding_resource is None:
+    try:
+        _get_buildpacks_binding(client, resource_group, service, binding_name)
+    except ResourceNotFoundError as e:
         raise CLIError('Buildpacks Binding {} does not exist '
-                                              'in resource group {}, service {}'
-                                              .format(binding_name, resource_group, service))
+                       'in resource group {}, service {}. Please create before set.'
+                       .format(binding_name, resource_group, service))
