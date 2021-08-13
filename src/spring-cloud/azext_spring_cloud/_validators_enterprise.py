@@ -8,7 +8,6 @@
 from re import match
 from azure.cli.core.util import CLIError
 from azure.cli.core.commands.validators import validate_tag
-from azure.cli.core.commands.client_factory import get_mgmt_service_client
 from azure.core.exceptions import ResourceNotFoundError
 from knack.log import get_logger
 from ._enterprise import DEFAULT_BUILD_SERVICE_NAME
@@ -16,10 +15,7 @@ from ._resource_quantity import (
     validate_cpu as validate_and_normalize_cpu, 
     validate_memory as validate_and_normalize_memory)
 from ._util_enterprise import (
-    is_enterprise_tier
-)
-from .vendored_sdks.appplatform.v2022_05_01_preview import (
-    AppPlatformManagementClient as AppPlatformManagementClient_20220501preview
+    is_enterprise_tier, get_client
 )
 
 
@@ -131,7 +127,7 @@ def validate_buildpacks_binding_secrets(namespace):
 
 def enterprise_only_and_binding_not_exist(cmd, namespace):
     only_support_enterprise(cmd, namespace)
-    client = get_mgmt_service_client(cmd.cli_ctx, AppPlatformManagementClient_20220501preview)
+    client = get_client(cmd)
     _validate_binding_not_exists(client,
                                  namespace.resource_group,
                                  namespace.service,
@@ -140,7 +136,7 @@ def enterprise_only_and_binding_not_exist(cmd, namespace):
 
 def enterprise_only_and_binding_exist(cmd, namespace):
     only_support_enterprise(cmd, namespace)
-    client = get_mgmt_service_client(cmd.cli_ctx, AppPlatformManagementClient_20220501preview)
+    client = get_client(cmd)
     _validate_binding_exists(client,
                              namespace.resource_group,
                              namespace.service,
