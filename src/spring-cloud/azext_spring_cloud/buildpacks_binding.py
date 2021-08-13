@@ -45,7 +45,3 @@ def _create_or_update_buildpacks_binding(client, resource_group, service, name, 
                                                       DEFAULT_BUILD_SERVICE_NAME,
                                                       name,
                                                       binding_resource)
-
-
-def _get_buildpacks_binding(client, resource_group, service, binding_name):
-    return client.buildpacks_binding.get(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, binding_name)
