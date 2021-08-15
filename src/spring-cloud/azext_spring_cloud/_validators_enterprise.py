@@ -98,30 +98,13 @@ def validate_buildpacks_binding_secrets(namespace):
         namespace.secrets = secrets_dict
 
 
-def enterprise_only_and_binding_not_exist(cmd, namespace):
-    only_support_enterprise(cmd, namespace)
+def validate_buildpacks_binding_not_exist(cmd, namespace):
     client = get_client(cmd)
-    _validate_binding_not_exists(client,
-                                 namespace.resource_group,
-                                 namespace.service,
-                                 namespace.name)
-
-
-def enterprise_only_and_binding_exist(cmd, namespace):
-    only_support_enterprise(cmd, namespace)
-    client = get_client(cmd)
-    _validate_binding_exists(client,
-                             namespace.resource_group,
-                             namespace.service,
-                             namespace.name)
-
-
-def _validate_binding_not_exists(client, resource_group, service, binding_name):
     try:
-        binding_resource = client.buildpacks_binding.get(resource_group,
-                                                         service,
+        binding_resource = client.buildpacks_binding.get(namespace.resource_group,
+                                                         namespace.service,
                                                          DEFAULT_BUILD_SERVICE_NAME,
-                                                         binding_name)
+                                                         namespace.name)
         if binding_resource is not None:
             raise CLIError('Buildpacks Binding {} already exists '
                            'in resource group {}, service {}. You can edit it by set command.'
@@ -131,10 +114,10 @@ def _validate_binding_not_exists(client, resource_group, service, binding_name):
         pass
 
 
-def _validate_binding_exists(client, resource_group, service, binding_name):
-    try:
-        client.buildpacks_binding.get(resource_group, service, DEFAULT_BUILD_SERVICE_NAME, binding_name)
-    except ResourceNotFoundError:
-        raise CLIError('Buildpacks Binding {} does not exist '
-                       'in resource group {}, service {}. Please create before set.'
-                       .format(binding_name, resource_group, service))
+def validate_buildpacks_binding_exist(cmd, namespace):
+    client = get_client(cmd)
+    # If not exists exception will be raised
+    client.buildpacks_binding.get(namespace.resource_group,
+                                  namespace.service,
+                                  DEFAULT_BUILD_SERVICE_NAME,
+                                  namespace.name)

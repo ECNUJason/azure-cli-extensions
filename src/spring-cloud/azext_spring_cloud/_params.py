@@ -16,7 +16,7 @@ from ._validators import (validate_env, validate_cosmos_type, validate_resource_
 from ._validators_enterprise import (validate_config_file_patterns, validate_cpu, validate_memory,
                                      validate_buildpacks_binding_properties,
                                      validate_buildpacks_binding_secrets, only_support_enterprise,
-                                     enterprise_only_and_binding_not_exist, enterprise_only_and_binding_exist,
+                                     validate_buildpacks_binding_not_exist, validate_buildpacks_binding_exist,
                                      validate_git_uri, validate_acs_patterns)
 from ._utils import ApiType
 
@@ -345,20 +345,17 @@ def load_arguments(self, _):
                        nargs='*',
                        validator=validate_buildpacks_binding_secrets)
 
+    for scope in ['spring-cloud build-service buildpacks-binding create']:
+        with self.argument_context(scope) as c:
+            c.argument('name', help='Name for buildpacks binding.', validator=validate_buildpacks_binding_not_exist)
+
+    for scope in ['spring-cloud build-service buildpacks-binding set']:
+        with self.argument_context(scope) as c:
+            c.argument('name', help='Name for buildpacks binding.', validator=validate_buildpacks_binding_exist)
+
     for scope in ['spring-cloud build-service buildpacks-binding create',
                   'spring-cloud build-service buildpacks-binding set',
                   'spring-cloud build-service buildpacks-binding show',
                   'spring-cloud build-service buildpacks-binding delete']:
         with self.argument_context(scope) as c:
-            c.argument('name', help='Name for buildpacks binding.')
-
-    for scope in ['spring-cloud build-service buildpacks-binding show',
-                  'spring-cloud build-service buildpacks-binding delete']:
-        with self.argument_context(scope) as c:
             c.argument('service', service_name_type, validator=only_support_enterprise)
-
-    with self.argument_context('spring-cloud build-service buildpacks-binding create') as c:
-        c.argument('service', service_name_type, validator=enterprise_only_and_binding_not_exist)
-
-    with self.argument_context('spring-cloud build-service buildpacks-binding set') as c:
-        c.argument('service', service_name_type, validator=enterprise_only_and_binding_exist)
