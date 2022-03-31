@@ -150,8 +150,6 @@
 
 /src/blockchain/ @jsntcy
 
-/src/codespaces/ @derekbekoe
-
 /src/desktopvirtualization/ @changlong-liu
 
 /src/attestation/ @YalinLi0312 @houk-ms
@@ -231,3 +229,5 @@
 /src/confidentialledger/ @kairu-ms @lynshi
 
 /src/quota/ @kairu-ms @ZengTaoxu
+
+/src/containerapp/ @calvinsID @haroonf @panchagnula
