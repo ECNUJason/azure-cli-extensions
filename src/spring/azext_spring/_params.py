@@ -889,6 +889,7 @@ def load_arguments(self, _):
             c.argument('client_id', arg_group='Single Sign On (SSO)', help="The public identifier for the application.")
             c.argument('client_secret', arg_group='Single Sign On (SSO)', help="The secret known only to the application and the authorization server.")
             c.argument('issuer_uri', arg_group='Single Sign On (SSO)', help="The URI of Issuer Identifier.")
+            c.argument('enable_api_try_out', arg_type=get_three_state_flag(), arg_group='Try out API', help="Try out the API by sending requests and viewing responses in API portal.")
 
     with self.argument_context('spring gateway update') as c:
         c.argument('cpu', type=str, help='CPU resource quantity. Should be 500m or number of CPU cores.')
