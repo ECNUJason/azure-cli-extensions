@@ -1,0 +1,340 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances --lines
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","zoneRedundant":false,"version":3,"serviceId":"2d794c01d43b476b8c175f58b292dcfb","networkProfile":{"outboundIPs":{"publicIPs":["20.187.165.112","20.187.167.101"]},"outboundType":"loadBalancer"},"powerState":"Running","fqdn":"jiec-e-eastasia.asc-test.net","marketplaceResource":{"plan":"asa-ent-hr-mtr","publisher":"vmware-inc","product":"azure-spring-cloud-vmware-tanzu-2"}},"type":"Microsoft.AppPlatform/Spring","sku":{"name":"E0","tier":"Enterprise"},"location":"eastasia","tags":{},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia","name":"jiec-e-eastasia","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:24:01.3574874Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-15T05:24:01.3574874Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 12:46:29 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-ms-ratelimit-remaining-subscription-resource-requests:
+      - '11999'
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances --lines
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","zoneRedundant":false,"version":3,"serviceId":"2d794c01d43b476b8c175f58b292dcfb","networkProfile":{"outboundIPs":{"publicIPs":["20.187.165.112","20.187.167.101"]},"outboundType":"loadBalancer"},"powerState":"Running","fqdn":"jiec-e-eastasia.asc-test.net","marketplaceResource":{"plan":"asa-ent-hr-mtr","publisher":"vmware-inc","product":"azure-spring-cloud-vmware-tanzu-2"}},"type":"Microsoft.AppPlatform/Spring","sku":{"name":"E0","tier":"Enterprise"},"location":"eastasia","tags":{},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia","name":"jiec-e-eastasia","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:24:01.3574874Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-15T05:24:01.3574874Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 12:46:29 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-ms-ratelimit-remaining-subscription-resource-requests:
+      - '11999'
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances --lines
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/configurationServices/default?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","settings":{"gitProperty":{"repositories":[{"name":"acme-fitness-store-config","patterns":["catalog/default","catalog/key-vault","identity/default","identity/key-vault","payment/default"],"label":"main","gitImplementation":"go-git","uri":"https://github.com/Azure-Samples/acme-fitness-store-config","searchPaths":[]},{"name":"t1","patterns":["test-acs-ado-https"],"label":"master","gitImplementation":"go-git","uri":"https://msazure.visualstudio.com/DefaultCollection/AzureDMSS/_git/ASC-E2E-Test-Private-Config","searchPaths":[],"username":"*","password":"*"}]}},"resourceRequests":{"cpu":"500m","memory":"1Gi","instanceCount":2},"instances":[{"name":"application-configuration-service-6fb669cfc5-k7cbd","status":"Running"},{"name":"application-configuration-service-6fb669cfc5-z6tq9","status":"Running"},{"name":"fluxcd-source-controller-675dbdd58b-8sk75","status":"Running"}],"generation":"Gen2"},"type":"Microsoft.AppPlatform/Spring/configurationServices","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/configurationServices/default","name":"default","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:27:16.5113438Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-24T08:35:02.4403683Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '1418'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 12:46:31 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://jiec-e-eastasia.asc-test.net/api/logstream/managedComponents/fluxSourceController/instances/fluxcd-source-controller-675dbdd58b-8sk75?tailLines=50&limitBytes=2097152
+  response:
+    body:
+      string: '{"level":"info","ts":"2023-11-23T12:40:17.559Z","msg":"no changes since
+        last reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-h4lf4","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-h4lf4","reconcileID":"34c0878b-bef0-4d34-89d6-f9f8a1cfde1c"}
+
+        {"level":"info","ts":"2023-11-23T12:40:18.090Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-5lf6g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-5lf6g","reconcileID":"f9a4d7b9-44cc-43e6-a059-0361d874160d"}
+
+        {"level":"info","ts":"2023-11-23T12:40:39.720Z","msg":"no changes since last
+        reconcilation: observed revision ''master/6377fbe0ad0e3a1ba231d7be96f68bc607f2a89a''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-c6b57","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-c6b57","reconcileID":"875c428e-e5bb-46e6-be61-a776be034314"}
+
+        {"level":"info","ts":"2023-11-23T12:41:05.604Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-4xcjs","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-4xcjs","reconcileID":"409ef206-7095-4b1c-9e4d-b0aa9cc97ca6"}
+
+        {"level":"info","ts":"2023-11-23T12:41:06.389Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7bxcc","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7bxcc","reconcileID":"76311e76-3738-463a-ba16-206ee12042af"}
+
+        {"level":"info","ts":"2023-11-23T12:41:07.167Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7cs5g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7cs5g","reconcileID":"bea1481e-794a-441c-bf5b-3111d717a067"}
+
+        {"level":"info","ts":"2023-11-23T12:41:07.656Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-l22l7","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-l22l7","reconcileID":"cf75be3f-27b8-4cc9-ae1e-074d88032448"}
+
+        {"level":"info","ts":"2023-11-23T12:41:16.637Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-rn7ts","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-rn7ts","reconcileID":"0021413e-9796-47d7-a5cf-79a9bf2a1d39"}
+
+        {"level":"info","ts":"2023-11-23T12:41:17.892Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-h4lf4","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-h4lf4","reconcileID":"3a59fb7b-96ef-4cc7-84dc-c4509ebdc329"}
+
+        {"level":"info","ts":"2023-11-23T12:41:18.415Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-5lf6g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-5lf6g","reconcileID":"52a1b86a-7164-49c5-b4a5-3dcc4bc18c99"}
+
+        {"level":"info","ts":"2023-11-23T12:41:39.957Z","msg":"no changes since last
+        reconcilation: observed revision ''master/6377fbe0ad0e3a1ba231d7be96f68bc607f2a89a''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-c6b57","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-c6b57","reconcileID":"3b0fd115-a111-4651-b066-10f10a297f30"}
+
+        {"level":"info","ts":"2023-11-23T12:42:05.950Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-4xcjs","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-4xcjs","reconcileID":"9ab2d7c0-7835-45a0-81a8-9514bb6fb1fe"}
+
+        {"level":"info","ts":"2023-11-23T12:42:06.709Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7bxcc","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7bxcc","reconcileID":"f42e8eba-fd0f-4382-907b-9bab31cb02da"}
+
+        {"level":"info","ts":"2023-11-23T12:42:07.503Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7cs5g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7cs5g","reconcileID":"75b67a71-af1f-4b5e-b5d5-da0ba01a27a0"}
+
+        {"level":"info","ts":"2023-11-23T12:42:07.979Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-l22l7","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-l22l7","reconcileID":"0dd49299-9563-4f5c-b70d-a751772b639a"}
+
+        {"level":"info","ts":"2023-11-23T12:42:16.962Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-rn7ts","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-rn7ts","reconcileID":"507dd6b1-e311-4a9d-a238-092404ba8aa1"}
+
+        {"level":"info","ts":"2023-11-23T12:42:18.234Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-h4lf4","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-h4lf4","reconcileID":"bad6c69a-e163-4db3-b6a5-0f833e1cdff4"}
+
+        {"level":"info","ts":"2023-11-23T12:42:18.755Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-5lf6g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-5lf6g","reconcileID":"9cdbe395-bc8f-4b2a-85a4-a55fd1754c30"}
+
+        {"level":"info","ts":"2023-11-23T12:42:40.189Z","msg":"no changes since last
+        reconcilation: observed revision ''master/6377fbe0ad0e3a1ba231d7be96f68bc607f2a89a''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-c6b57","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-c6b57","reconcileID":"7f3af8d9-01c4-4205-a808-90c9f9e83ab4"}
+
+        {"level":"info","ts":"2023-11-23T12:43:06.293Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-4xcjs","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-4xcjs","reconcileID":"b96b440e-c1d9-47c4-b069-ba4802200d08"}
+
+        {"level":"info","ts":"2023-11-23T12:43:07.040Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7bxcc","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7bxcc","reconcileID":"e11d8115-3eaa-4fa6-b899-b9e448d66670"}
+
+        {"level":"info","ts":"2023-11-23T12:43:07.833Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7cs5g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7cs5g","reconcileID":"a5e9ee31-1c42-4490-b849-8690a999453b"}
+
+        {"level":"info","ts":"2023-11-23T12:43:08.312Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-l22l7","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-l22l7","reconcileID":"511d27e8-30b1-4294-8f89-40d3dbcb7b59"}
+
+        {"level":"info","ts":"2023-11-23T12:43:17.288Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-rn7ts","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-rn7ts","reconcileID":"94a6fa51-3eda-4f3d-b3dd-338e03756951"}
+
+        {"level":"info","ts":"2023-11-23T12:43:18.556Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-h4lf4","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-h4lf4","reconcileID":"ad332625-420b-4460-9bbc-19c51364bb66"}
+
+        {"level":"info","ts":"2023-11-23T12:43:19.078Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-5lf6g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-5lf6g","reconcileID":"8fc61bb0-430e-4096-9e3c-b891a0dfa9da"}
+
+        {"level":"info","ts":"2023-11-23T12:43:40.970Z","msg":"no changes since last
+        reconcilation: observed revision ''master/6377fbe0ad0e3a1ba231d7be96f68bc607f2a89a''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-c6b57","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-c6b57","reconcileID":"889d714e-020b-4319-abab-06bf9fb68b08"}
+
+        {"level":"info","ts":"2023-11-23T12:44:06.619Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-4xcjs","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-4xcjs","reconcileID":"168214ae-137b-4a3b-98f6-894a643d6d15"}
+
+        {"level":"info","ts":"2023-11-23T12:44:07.374Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7bxcc","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7bxcc","reconcileID":"5672ffa0-0ab1-4c23-b7fc-ad8cfbf4dae1"}
+
+        {"level":"info","ts":"2023-11-23T12:44:08.168Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7cs5g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7cs5g","reconcileID":"1e0cc24c-d38f-477c-ad0a-afe9335c4232"}
+
+        {"level":"info","ts":"2023-11-23T12:44:08.625Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-l22l7","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-l22l7","reconcileID":"b1f78f4c-7465-4191-be07-3a0b89a07643"}
+
+        {"level":"info","ts":"2023-11-23T12:44:17.627Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-rn7ts","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-rn7ts","reconcileID":"2d2c35c1-8e94-468f-bbff-7bb399ce3133"}
+
+        {"level":"info","ts":"2023-11-23T12:44:18.880Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-h4lf4","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-h4lf4","reconcileID":"773c1ed9-0c08-403f-94e9-066895d7d250"}
+
+        {"level":"info","ts":"2023-11-23T12:44:19.401Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-5lf6g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-5lf6g","reconcileID":"6c032a2e-cc05-49d1-b046-c0c97422c5da"}
+
+        {"level":"info","ts":"2023-11-23T12:44:41.240Z","msg":"no changes since last
+        reconcilation: observed revision ''master/6377fbe0ad0e3a1ba231d7be96f68bc607f2a89a''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-c6b57","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-c6b57","reconcileID":"20fbdb24-ce03-422d-bc37-231e64a642d6"}
+
+        {"level":"info","ts":"2023-11-23T12:45:06.953Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-4xcjs","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-4xcjs","reconcileID":"a87abf08-f0e9-4b42-9945-7049cc265d94"}
+
+        {"level":"info","ts":"2023-11-23T12:45:07.710Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7bxcc","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7bxcc","reconcileID":"e843c3b2-3711-4baa-8af8-12e0459c2b17"}
+
+        {"level":"info","ts":"2023-11-23T12:45:08.494Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7cs5g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7cs5g","reconcileID":"78d30784-1565-4b2f-ac59-bf8b0865cbeb"}
+
+        {"level":"info","ts":"2023-11-23T12:45:08.965Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-l22l7","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-l22l7","reconcileID":"764f046f-765c-4c81-b45a-f9db27033ff8"}
+
+        {"level":"info","ts":"2023-11-23T12:45:17.996Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-rn7ts","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-rn7ts","reconcileID":"d1efd16d-c7f5-464a-9306-9c53a8d5d158"}
+
+        {"level":"info","ts":"2023-11-23T12:45:19.223Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-h4lf4","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-h4lf4","reconcileID":"5b8c7897-8adc-450b-9ced-37b070b9c526"}
+
+        {"level":"info","ts":"2023-11-23T12:45:19.732Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-5lf6g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-5lf6g","reconcileID":"37c57cab-168d-4a5f-af4a-bfd7b34ce256"}
+
+        {"level":"info","ts":"2023-11-23T12:45:41.477Z","msg":"no changes since last
+        reconcilation: observed revision ''master/6377fbe0ad0e3a1ba231d7be96f68bc607f2a89a''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-c6b57","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-c6b57","reconcileID":"9d884a44-e89c-4b31-be7d-1e7d9d03e254"}
+
+        {"level":"info","ts":"2023-11-23T12:46:07.288Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-4xcjs","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-4xcjs","reconcileID":"8fef4c76-ee7d-49d6-b130-085fb259eac9"}
+
+        {"level":"info","ts":"2023-11-23T12:46:08.048Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7bxcc","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7bxcc","reconcileID":"06a44485-38ef-41b5-a000-86e22bda9818"}
+
+        {"level":"info","ts":"2023-11-23T12:46:08.855Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-7cs5g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-7cs5g","reconcileID":"0e74fe45-8ab5-478c-aaa4-f6ae3a0020fa"}
+
+        {"level":"info","ts":"2023-11-23T12:46:09.301Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-l22l7","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-l22l7","reconcileID":"26c36673-72e4-44cf-bb50-8ac3ea6808f9"}
+
+        {"level":"info","ts":"2023-11-23T12:46:18.347Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-rn7ts","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-rn7ts","reconcileID":"6193cae2-f2ca-4414-b12f-f15d847d4f24"}
+
+        {"level":"info","ts":"2023-11-23T12:46:19.549Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-h4lf4","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-h4lf4","reconcileID":"e678bd69-5a72-411c-a50c-8e67db20dbd5"}
+
+        {"level":"info","ts":"2023-11-23T12:46:20.056Z","msg":"no changes since last
+        reconcilation: observed revision ''main/d145f5aa2a5e856d0402a08d1725cec602bb89b0''","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"git-repository-5lf6g","namespace":"acs-workspace"},"namespace":"acs-workspace","name":"git-repository-5lf6g","reconcileID":"1b69db28-0761-4596-b6d9-8a2cb5dff899"}
+
+        '
+    headers:
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-headers:
+      - DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization
+      access-control-allow-methods:
+      - GET, OPTIONS
+      access-control-allow-origin:
+      - '*'
+      access-control-max-age:
+      - '1728000'
+      connection:
+      - keep-alive
+      content-type:
+      - text/plain
+      date:
+      - Thu, 23 Nov 2023 12:46:32 GMT
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1

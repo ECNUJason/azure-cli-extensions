@@ -1,0 +1,407 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","zoneRedundant":false,"version":3,"serviceId":"2d794c01d43b476b8c175f58b292dcfb","networkProfile":{"outboundIPs":{"publicIPs":["20.187.165.112","20.187.167.101"]},"outboundType":"loadBalancer"},"powerState":"Running","fqdn":"jiec-e-eastasia.asc-test.net","marketplaceResource":{"plan":"asa-ent-hr-mtr","publisher":"vmware-inc","product":"azure-spring-cloud-vmware-tanzu-2"}},"type":"Microsoft.AppPlatform/Spring","sku":{"name":"E0","tier":"Enterprise"},"location":"eastasia","tags":{},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia","name":"jiec-e-eastasia","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:24:01.3574874Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-15T05:24:01.3574874Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 08:27:03 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-ms-ratelimit-remaining-subscription-resource-requests:
+      - '11999'
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","zoneRedundant":false,"version":3,"serviceId":"2d794c01d43b476b8c175f58b292dcfb","networkProfile":{"outboundIPs":{"publicIPs":["20.187.165.112","20.187.167.101"]},"outboundType":"loadBalancer"},"powerState":"Running","fqdn":"jiec-e-eastasia.asc-test.net","marketplaceResource":{"plan":"asa-ent-hr-mtr","publisher":"vmware-inc","product":"azure-spring-cloud-vmware-tanzu-2"}},"type":"Microsoft.AppPlatform/Spring","sku":{"name":"E0","tier":"Enterprise"},"location":"eastasia","tags":{},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia","name":"jiec-e-eastasia","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:24:01.3574874Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-15T05:24:01.3574874Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 08:27:04 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-ms-ratelimit-remaining-subscription-resource-requests:
+      - '11998'
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/configurationServices/default?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","settings":{"gitProperty":{"repositories":[{"name":"acme-fitness-store-config","patterns":["catalog/default","catalog/key-vault","identity/default","identity/key-vault","payment/default"],"label":"main","gitImplementation":"go-git","uri":"https://github.com/Azure-Samples/acme-fitness-store-config","searchPaths":[]},{"name":"t1","patterns":["test-acs-ado-https"],"label":"master","gitImplementation":"go-git","uri":"https://msazure.visualstudio.com/DefaultCollection/AzureDMSS/_git/ASC-E2E-Test-Private-Config","searchPaths":[],"username":"*","password":"*"}]}},"resourceRequests":{"cpu":"500m","memory":"1Gi","instanceCount":2},"instances":[{"name":"application-configuration-service-6fb669cfc5-k7cbd","status":"Running"},{"name":"application-configuration-service-6fb669cfc5-z6tq9","status":"Running"},{"name":"fluxcd-source-controller-675dbdd58b-8sk75","status":"Running"}],"generation":"Gen2"},"type":"Microsoft.AppPlatform/Spring/configurationServices","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/configurationServices/default","name":"default","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:27:16.5113438Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-24T08:35:02.4403683Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '1418'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 08:27:06 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://jiec-e-eastasia.asc-test.net/api/logstream/managedComponents/applicationConfigurationService/instances/application-configuration-service-6fb669cfc5-k7cbd?tailLines=50&limitBytes=2097152
+  response:
+    body:
+      string: "2023-11-17T14:57:10.753Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m ---
+        [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource#Start
+        listing and watching...\n2023-11-17T14:57:10.756Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.reconciler.git.FluxGitRepository-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.reconciler.git.FluxGitRepository#Start
+        listing and watching...\n2023-11-17T14:57:10.759Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig        \e[0;39m
+        : Event: Update ClusterConfigurationSource acs-default-catalog-default-616f4'\n2023-11-17T14:57:10.759Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-catalog-key-vault-0d918'\n2023-11-17T14:57:10.759Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-identity-default-c6d2f'\n2023-11-17T14:57:10.759Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-identity-key-vault-10088'\n2023-11-17T14:57:10.759Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-payment-default-e9d46'\n2023-11-17T14:57:10.759Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-test-acs-ado-https-default-1872f'\n2023-11-17T14:57:11.554Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Start
+        listing and watching...\n2023-11-17T18:06:48.182Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.reconciler.git.FluxGitRepository-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.reconciler.git.FluxGitRepository#Read
+        timeout retry list and watch\n2023-11-17T18:06:48.182Z  \e[32mINFO \e[0;39m
+        \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSlice-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSlice#Read
+        timeout retry list and watch\n2023-11-17T18:06:48.182Z  \e[32mINFO \e[0;39m
+        \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource#Read
+        timeout retry list and watch\n2023-11-17T18:06:49.182Z  \e[32mINFO \e[0;39m
+        \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource#Start
+        listing and watching...\n2023-11-17T18:06:49.182Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSlice-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSlice#Start
+        listing and watching...\n2023-11-17T18:06:49.182Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.reconciler.git.FluxGitRepository-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.reconciler.git.FluxGitRepository#Start
+        listing and watching...\n2023-11-17T18:06:49.594Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : ResourceVersion 18203296
+        and Watch connection expired: too old resource version: 18203296 (18275586)
+        , will retry w/o resourceVersion next time\n2023-11-17T18:06:49.595Z  \e[32mINFO
+        \e[0;39m \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Watch
+        expired, will re-list-watch soon\n2023-11-17T18:06:50.499Z  \e[32mINFO \e[0;39m
+        \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-identity-default-c6d2f'\n2023-11-17T18:06:50.499Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-identity-key-vault-10088'\n2023-11-17T18:06:50.499Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-payment-default-e9d46'\n2023-11-17T18:06:50.499Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-test-acs-ado-https-default-1872f'\n2023-11-17T18:06:50.499Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-catalog-default-616f4'\n2023-11-17T18:06:50.499Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-catalog-key-vault-0d918'\n2023-11-17T18:06:50.595Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Start
+        listing and watching...\n2023-11-17T18:06:50.611Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig        \e[0;39m
+        : Event: Update ClusterConfigurationSource acs-default-catalog-default-616f4'\n2023-11-17T18:06:50.611Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-catalog-key-vault-0d918'\n2023-11-17T18:06:50.611Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-identity-default-c6d2f'\n2023-11-17T18:06:50.611Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-identity-key-vault-10088'\n2023-11-17T18:06:50.611Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-payment-default-e9d46'\n2023-11-17T18:06:50.611Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-test-acs-ado-https-default-1872f'\n2023-11-22T21:03:51.131Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource#Read
+        timeout retry list and watch\n2023-11-22T21:03:51.131Z  \e[32mINFO \e[0;39m
+        \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSlice-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSlice#Read
+        timeout retry list and watch\n2023-11-22T21:03:51.131Z  \e[32mINFO \e[0;39m
+        \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.reconciler.git.FluxGitRepository-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.reconciler.git.FluxGitRepository#Read
+        timeout retry list and watch\n2023-11-22T21:03:51.131Z  \e[32mINFO \e[0;39m
+        \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Read
+        timeout retry list and watch\n2023-11-22T21:03:52.131Z  \e[32mINFO \e[0;39m
+        \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSlice-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSlice#Start
+        listing and watching...\n2023-11-22T21:03:52.131Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Start
+        listing and watching...\n2023-11-22T21:03:52.131Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ClusterConfigurationSource#Start
+        listing and watching...\n2023-11-22T21:03:52.131Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.reconciler.git.FluxGitRepository-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.reconciler.git.FluxGitRepository#Start
+        listing and watching...\n2023-11-22T21:03:52.152Z  \e[32mINFO \e[0;39m \e[35m16715\e[0;39m
+        --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-catalog-default-616f4'\n2023-11-22T21:03:52.152Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-catalog-default-616f4'\n2023-11-22T21:03:52.152Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-catalog-key-vault-0d918'\n2023-11-22T21:03:52.152Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-catalog-key-vault-0d918'\n2023-11-22T21:03:52.153Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-identity-default-c6d2f'\n2023-11-22T21:03:52.153Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-identity-default-c6d2f'\n2023-11-22T21:03:52.153Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-identity-key-vault-10088'\n2023-11-22T21:03:52.153Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-identity-key-vault-10088'\n2023-11-22T21:03:52.153Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-payment-default-e9d46'\n2023-11-22T21:03:52.153Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-payment-default-e9d46'\n2023-11-22T21:03:52.153Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-5-thread-1] \e[36mc.v.t.a.reconciler.SliceReconcilerConfig\e[0;39m
+        : Event: Update ConfigurationSlice 'default/acs-default-test-acs-ado-https-default-1872f'\n2023-11-22T21:03:52.153Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [pool-8-thread-1] \e[36mc.v.t.a.r.SourceReconcilerConfig
+        \       \e[0;39m : Event: Update ClusterConfigurationSource acs-default-test-acs-ado-https-default-1872f'\n"
+    headers:
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-headers:
+      - DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization
+      access-control-allow-methods:
+      - GET, OPTIONS
+      access-control-allow-origin:
+      - '*'
+      access-control-max-age:
+      - '1728000'
+      connection:
+      - keep-alive
+      content-type:
+      - text/plain
+      date:
+      - Thu, 23 Nov 2023 08:27:07 GMT
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://jiec-e-eastasia.asc-test.net/api/logstream/managedComponents/applicationConfigurationService/instances/application-configuration-service-6fb669cfc5-z6tq9?tailLines=50&limitBytes=2097152
+  response:
+    body:
+      string: "\tat io.kubernetes.client.openapi.ApiClient.handleResponse(ApiClient.java:973)\n\tat
+        io.kubernetes.client.openapi.ApiClient.execute(ApiClient.java:885)\n\tat io.kubernetes.client.informer.SharedInformerFactory$1.list(SharedInformerFactory.java:222)\n\tat
+        io.kubernetes.client.informer.cache.ReflectorRunnable.run(ReflectorRunnable.java:91)\n\tat
+        java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)\n\tat
+        java.base/java.util.concurrent.FutureTask.runAndReset(Unknown Source)\n\tat
+        java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown
+        Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown
+        Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown
+        Source)\n\tat java.base/java.lang.Thread.run(Unknown Source)\n2023-11-22T21:08:13.618Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Start
+        listing and watching...\n2023-11-22T21:08:16.621Z  \e[32mERROR\e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Reflector
+        loop failed unexpectedly\nio.kubernetes.client.openapi.ApiException: \n\tat
+        io.kubernetes.client.openapi.ApiClient.handleResponse(ApiClient.java:973)\n\tat
+        io.kubernetes.client.openapi.ApiClient.execute(ApiClient.java:885)\n\tat io.kubernetes.client.informer.SharedInformerFactory$1.list(SharedInformerFactory.java:222)\n\tat
+        io.kubernetes.client.informer.cache.ReflectorRunnable.run(ReflectorRunnable.java:91)\n\tat
+        java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)\n\tat
+        java.base/java.util.concurrent.FutureTask.runAndReset(Unknown Source)\n\tat
+        java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown
+        Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown
+        Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown
+        Source)\n\tat java.base/java.lang.Thread.run(Unknown Source)\n2023-11-22T21:08:17.621Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Start
+        listing and watching...\n2023-11-22T21:08:20.630Z  \e[32mERROR\e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Reflector
+        loop failed unexpectedly\nio.kubernetes.client.openapi.ApiException: \n\tat
+        io.kubernetes.client.openapi.ApiClient.handleResponse(ApiClient.java:973)\n\tat
+        io.kubernetes.client.openapi.ApiClient.execute(ApiClient.java:885)\n\tat io.kubernetes.client.informer.SharedInformerFactory$1.list(SharedInformerFactory.java:222)\n\tat
+        io.kubernetes.client.informer.cache.ReflectorRunnable.run(ReflectorRunnable.java:91)\n\tat
+        java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)\n\tat
+        java.base/java.util.concurrent.FutureTask.runAndReset(Unknown Source)\n\tat
+        java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown
+        Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown
+        Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown
+        Source)\n\tat java.base/java.lang.Thread.run(Unknown Source)\n2023-11-22T21:08:21.630Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Start
+        listing and watching...\n2023-11-22T21:08:24.632Z  \e[32mERROR\e[0;39m \e[35m16715\e[0;39m
+        --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Reflector
+        loop failed unexpectedly\nio.kubernetes.client.openapi.ApiException: \n\tat
+        io.kubernetes.client.openapi.ApiClient.handleResponse(ApiClient.java:973)\n\tat
+        io.kubernetes.client.openapi.ApiClient.execute(ApiClient.java:885)\n\tat io.kubernetes.client.informer.SharedInformerFactory$1.list(SharedInformerFactory.java:222)\n\tat
+        io.kubernetes.client.informer.cache.ReflectorRunnable.run(ReflectorRunnable.java:91)\n\tat
+        java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)\n\tat
+        java.base/java.util.concurrent.FutureTask.runAndReset(Unknown Source)\n\tat
+        java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown
+        Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown
+        Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown
+        Source)\n\tat java.base/java.lang.Thread.run(Unknown Source)\n2023-11-22T21:08:25.633Z
+        \ \e[32mINFO \e[0;39m \e[35m16715\e[0;39m --- [controller-reflector-com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource-1]
+        \e[36mi.k.c.informer.cache.ReflectorRunnable  \e[0;39m : class com.vmware.tanzu.acs.models.V1alpha4ConfigurationSource#Start
+        listing and watching...\n"
+    headers:
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-headers:
+      - DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization
+      access-control-allow-methods:
+      - GET, OPTIONS
+      access-control-allow-origin:
+      - '*'
+      access-control-max-age:
+      - '1728000'
+      connection:
+      - keep-alive
+      content-type:
+      - text/plain
+      date:
+      - Thu, 23 Nov 2023 08:27:09 GMT
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1

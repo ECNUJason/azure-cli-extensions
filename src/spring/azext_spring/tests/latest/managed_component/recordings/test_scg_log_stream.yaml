@@ -1,0 +1,353 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances --lines
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","zoneRedundant":false,"version":3,"serviceId":"2d794c01d43b476b8c175f58b292dcfb","networkProfile":{"outboundIPs":{"publicIPs":["20.187.165.112","20.187.167.101"]},"outboundType":"loadBalancer"},"powerState":"Running","fqdn":"jiec-e-eastasia.asc-test.net","marketplaceResource":{"plan":"asa-ent-hr-mtr","publisher":"vmware-inc","product":"azure-spring-cloud-vmware-tanzu-2"}},"type":"Microsoft.AppPlatform/Spring","sku":{"name":"E0","tier":"Enterprise"},"location":"eastasia","tags":{},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia","name":"jiec-e-eastasia","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:24:01.3574874Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-15T05:24:01.3574874Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 12:47:08 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-ms-ratelimit-remaining-subscription-resource-requests:
+      - '11999'
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances --lines
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","zoneRedundant":false,"version":3,"serviceId":"2d794c01d43b476b8c175f58b292dcfb","networkProfile":{"outboundIPs":{"publicIPs":["20.187.165.112","20.187.167.101"]},"outboundType":"loadBalancer"},"powerState":"Running","fqdn":"jiec-e-eastasia.asc-test.net","marketplaceResource":{"plan":"asa-ent-hr-mtr","publisher":"vmware-inc","product":"azure-spring-cloud-vmware-tanzu-2"}},"type":"Microsoft.AppPlatform/Spring","sku":{"name":"E0","tier":"Enterprise"},"location":"eastasia","tags":{},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia","name":"jiec-e-eastasia","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:24:01.3574874Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-15T05:24:01.3574874Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 12:47:09 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-ms-ratelimit-remaining-subscription-resource-requests:
+      - '11999'
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances --lines
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/gateways/default?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"public":true,"url":"jiec-e-eastasia-gateway-708cf.svc.asc-test.net","provisioningState":"Succeeded","httpsOnly":false,"apiMetadataProperties":{"title":"","description":"","documentation":"","version":"","serverUrl":""},"corsProperties":{"allowedOrigins":[],"allowedOriginPatterns":[],"allowedMethods":[],"allowedHeaders":[],"allowCredentials":false,"exposedHeaders":[]},"resourceRequests":{"cpu":"1","memory":"2Gi"},"instances":[{"name":"asc-scg-default-0","status":"Running"}],"operatorProperties":{"resourceRequests":{"cpu":"1","memory":"2Gi","instanceCount":1},"instances":[{"name":"scg-operator-6d8895c44b-wcngh","status":"Running"}]},"environmentVariables":{"properties":{},"secrets":null},"clientAuth":{"certificateVerification":"Disabled"},"responseCacheProperties":{"size":"10MB","timeToLive":"60s","responseCacheType":"LocalCachePerInstance"}},"type":"Microsoft.AppPlatform/Spring/gateways","sku":{"name":"E0","tier":"Enterprise","capacity":1},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/gateways/default","name":"default","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:27:16.5269715Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-11-22T02:44:19.2517752Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '1368'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 12:47:12 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://jiec-e-eastasia.asc-test.net/api/logstream/managedComponents/springCloudGateway/instances/asc-scg-default-0?tailLines=50&limitBytes=2097152
+  response:
+    body:
+      string: '2023-11-22T02:46:14.946Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:14.954Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:14.959Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.041Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.043Z  INFO 1 --- [or-http-epoll-5] i.p.s.c.g.r.h.HazelcastRateLimitsRemover
+        : Removing Hazelcast map ''GLOBAL_RATE_LIMIT'' with rate limit information
+
+        2023-11-22T02:46:15.240Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.242Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.247Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.251Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.339Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.341Z  INFO 1 --- [or-http-epoll-5] i.p.s.c.g.r.h.HazelcastRateLimitsRemover
+        : Removing Hazelcast map ''GLOBAL_RATE_LIMIT'' with rate limit information
+
+        2023-11-22T02:46:15.443Z  WARN 1 --- [or-http-epoll-5] o.s.c.g.a.GatewayControllerEndpoint      :
+        Invalid FilterDefinition: [SsoLogin]
+
+        2023-11-22T02:46:15.643Z  WARN 1 --- [or-http-epoll-5] o.s.c.g.a.GatewayControllerEndpoint      :
+        Invalid FilterDefinition: [SsoLogin]
+
+        2023-11-22T02:46:15.750Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.841Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.844Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.846Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.849Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:15.851Z  INFO 1 --- [or-http-epoll-5] i.p.s.c.g.r.h.HazelcastRateLimitsRemover
+        : Removing Hazelcast map ''GLOBAL_RATE_LIMIT'' with rate limit information
+
+        2023-11-22T02:46:16.052Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.055Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.057Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.140Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.143Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.144Z  INFO 1 --- [or-http-epoll-5] i.p.s.c.g.r.h.HazelcastRateLimitsRemover
+        : Removing Hazelcast map ''GLOBAL_RATE_LIMIT'' with rate limit information
+
+        2023-11-22T02:46:16.242Z  INFO 1 --- [n.HealthMonitor] c.h.internal.diagnostics.HealthMonitor   :
+        [10.244.3.67]:5701 [dev] [4.2.8] processors=16, physical.memory.total=2.0G,
+        physical.memory.free=1.6G, swap.space.total=0, swap.space.free=0, heap.memory.used=55.6M,
+        heap.memory.free=34.4M, heap.memory.total=90.0M, heap.memory.max=1.6G, heap.memory.used/total=61.57%,
+        heap.memory.used/max=3.44%, minor.gc.count=35, minor.gc.time=550ms, major.gc.count=0,
+        major.gc.time=0ms, load.process=0.00%, load.system=90.17%, load.systemAverage=0.18,
+        thread.count=74, thread.peakCount=74, cluster.timeDiff=0, event.q.size=0,
+        executor.q.async.size=0, executor.q.client.size=0, executor.q.client.query.size=0,
+        executor.q.client.blocking.size=0, executor.q.query.size=0, executor.q.scheduled.size=0,
+        executor.q.io.size=0, executor.q.system.size=0, executor.q.operations.size=0,
+        executor.q.priorityOperation.size=0, operations.completed.count=1, executor.q.mapLoad.size=0,
+        executor.q.mapLoadAllKeys.size=0, executor.q.cluster.size=0, executor.q.response.size=0,
+        operations.running.count=0, operations.pending.invocations.percentage=0.00%,
+        operations.pending.invocations.count=0, proxy.count=1, clientEndpoint.count=0,
+        connection.active.count=0, client.connection.count=0, connection.count=0
+
+        2023-11-22T02:46:16.342Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.344Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.347Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.349Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.352Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.354Z  INFO 1 --- [or-http-epoll-5] i.p.s.c.g.r.h.HazelcastRateLimitsRemover
+        : Removing Hazelcast map ''GLOBAL_RATE_LIMIT'' with rate limit information
+
+        2023-11-22T02:46:16.544Z  WARN 1 --- [or-http-epoll-5] o.s.c.g.a.GatewayControllerEndpoint      :
+        Invalid FilterDefinition: [SsoLogin]
+
+        2023-11-22T02:46:16.558Z  WARN 1 --- [or-http-epoll-5] o.s.c.g.a.GatewayControllerEndpoint      :
+        Invalid FilterDefinition: [SsoLogin]
+
+        2023-11-22T02:46:16.650Z  WARN 1 --- [or-http-epoll-5] o.s.c.g.a.GatewayControllerEndpoint      :
+        Invalid FilterDefinition: [SsoLogin]
+
+        2023-11-22T02:46:16.742Z  WARN 1 --- [or-http-epoll-5] o.s.c.g.a.GatewayControllerEndpoint      :
+        Invalid FilterDefinition: [SsoLogin]
+
+        2023-11-22T02:46:16.755Z  WARN 1 --- [or-http-epoll-5] o.s.c.g.a.GatewayControllerEndpoint      :
+        Invalid FilterDefinition: [SsoLogin]
+
+        2023-11-22T02:46:16.848Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.850Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.853Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.940Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.942Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:16.945Z  INFO 1 --- [or-http-epoll-5] i.p.s.c.g.r.h.HazelcastRateLimitsRemover
+        : Removing Hazelcast map ''GLOBAL_RATE_LIMIT'' with rate limit information
+
+        2023-11-22T02:46:17.143Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:17.146Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:17.148Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:17.151Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:17.153Z  INFO 1 --- [or-http-epoll-5] .g.c.LocalResponseCacheAutoConfiguration
+        : Initializing Caffeine
+
+        2023-11-22T02:46:17.241Z  INFO 1 --- [or-http-epoll-5] i.p.s.c.g.r.h.HazelcastRateLimitsRemover
+        : Removing Hazelcast map ''GLOBAL_RATE_LIMIT'' with rate limit information
+
+        2023-11-23T02:45:56.225Z  INFO 1 --- [cached.thread-3] c.h.i.p.impl.PartitionStateManager       :
+        [10.244.3.67]:5701 [dev] [4.2.8] Initializing cluster partition table arrangement...
+
+        '
+    headers:
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-headers:
+      - DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization
+      access-control-allow-methods:
+      - GET, OPTIONS
+      access-control-allow-origin:
+      - '*'
+      access-control-max-age:
+      - '1728000'
+      connection:
+      - keep-alive
+      content-type:
+      - text/plain
+      date:
+      - Thu, 23 Nov 2023 12:47:13 GMT
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1

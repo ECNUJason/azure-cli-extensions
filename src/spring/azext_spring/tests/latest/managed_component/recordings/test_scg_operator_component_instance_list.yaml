@@ -1,0 +1,100 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component instance list
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -c
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","zoneRedundant":false,"version":3,"serviceId":"2d794c01d43b476b8c175f58b292dcfb","networkProfile":{"outboundIPs":{"publicIPs":["20.187.165.112","20.187.167.101"]},"outboundType":"loadBalancer"},"powerState":"Running","fqdn":"jiec-e-eastasia.asc-test.net","marketplaceResource":{"plan":"asa-ent-hr-mtr","publisher":"vmware-inc","product":"azure-spring-cloud-vmware-tanzu-2"}},"type":"Microsoft.AppPlatform/Spring","sku":{"name":"E0","tier":"Enterprise"},"location":"eastasia","tags":{},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia","name":"jiec-e-eastasia","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:24:01.3574874Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-15T05:24:01.3574874Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 08:15:47 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-ms-ratelimit-remaining-subscription-resource-requests:
+      - '11999'
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component instance list
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -c
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/gateways/default?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"public":true,"url":"jiec-e-eastasia-gateway-708cf.svc.asc-test.net","provisioningState":"Succeeded","httpsOnly":false,"apiMetadataProperties":{"title":"","description":"","documentation":"","version":"","serverUrl":""},"corsProperties":{"allowedOrigins":[],"allowedOriginPatterns":[],"allowedMethods":[],"allowedHeaders":[],"allowCredentials":false,"exposedHeaders":[]},"resourceRequests":{"cpu":"1","memory":"2Gi"},"instances":[{"name":"asc-scg-default-0","status":"Running"}],"operatorProperties":{"resourceRequests":{"cpu":"1","memory":"2Gi","instanceCount":1},"instances":[{"name":"scg-operator-6d8895c44b-wcngh","status":"Running"}]},"environmentVariables":{"properties":{},"secrets":null},"clientAuth":{"certificateVerification":"Disabled"},"responseCacheProperties":{"size":"10MB","timeToLive":"60s","responseCacheType":"LocalCachePerInstance"}},"type":"Microsoft.AppPlatform/Spring/gateways","sku":{"name":"E0","tier":"Enterprise","capacity":1},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/gateways/default","name":"default","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:27:16.5269715Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-11-22T02:44:19.2517752Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '1368'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 08:15:50 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+version: 1

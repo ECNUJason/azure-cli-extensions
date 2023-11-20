@@ -1,0 +1,253 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances --lines
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","zoneRedundant":false,"version":3,"serviceId":"2d794c01d43b476b8c175f58b292dcfb","networkProfile":{"outboundIPs":{"publicIPs":["20.187.165.112","20.187.167.101"]},"outboundType":"loadBalancer"},"powerState":"Running","fqdn":"jiec-e-eastasia.asc-test.net","marketplaceResource":{"plan":"asa-ent-hr-mtr","publisher":"vmware-inc","product":"azure-spring-cloud-vmware-tanzu-2"}},"type":"Microsoft.AppPlatform/Spring","sku":{"name":"E0","tier":"Enterprise"},"location":"eastasia","tags":{},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia","name":"jiec-e-eastasia","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:24:01.3574874Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-15T05:24:01.3574874Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 12:47:20 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-ms-ratelimit-remaining-subscription-resource-requests:
+      - '11999'
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances --lines
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"provisioningState":"Succeeded","zoneRedundant":false,"version":3,"serviceId":"2d794c01d43b476b8c175f58b292dcfb","networkProfile":{"outboundIPs":{"publicIPs":["20.187.165.112","20.187.167.101"]},"outboundType":"loadBalancer"},"powerState":"Running","fqdn":"jiec-e-eastasia.asc-test.net","marketplaceResource":{"plan":"asa-ent-hr-mtr","publisher":"vmware-inc","product":"azure-spring-cloud-vmware-tanzu-2"}},"type":"Microsoft.AppPlatform/Spring","sku":{"name":"E0","tier":"Enterprise"},"location":"eastasia","tags":{},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia","name":"jiec-e-eastasia","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:24:01.3574874Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-10-15T05:24:01.3574874Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 12:47:21 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-ms-ratelimit-remaining-subscription-resource-requests:
+      - '11998'
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      CommandName:
+      - spring component logs
+      Connection:
+      - keep-alive
+      ParameterSetName:
+      - -s -g -n --all-instances --lines
+      User-Agent:
+      - AZURECLI/2.54.0 azsdk-python-mgmt-appplatform/6.1.0 Python/3.10.0 (Windows-10-10.0.22621-SP0)
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/gateways/default?api-version=2023-11-01-preview
+  response:
+    body:
+      string: '{"properties":{"public":true,"url":"jiec-e-eastasia-gateway-708cf.svc.asc-test.net","provisioningState":"Succeeded","httpsOnly":false,"apiMetadataProperties":{"title":"","description":"","documentation":"","version":"","serverUrl":""},"corsProperties":{"allowedOrigins":[],"allowedOriginPatterns":[],"allowedMethods":[],"allowedHeaders":[],"allowCredentials":false,"exposedHeaders":[]},"resourceRequests":{"cpu":"1","memory":"2Gi"},"instances":[{"name":"asc-scg-default-0","status":"Running"}],"operatorProperties":{"resourceRequests":{"cpu":"1","memory":"2Gi","instanceCount":1},"instances":[{"name":"scg-operator-6d8895c44b-wcngh","status":"Running"}]},"environmentVariables":{"properties":{},"secrets":null},"clientAuth":{"certificateVerification":"Disabled"},"responseCacheProperties":{"size":"10MB","timeToLive":"60s","responseCacheType":"LocalCachePerInstance"}},"type":"Microsoft.AppPlatform/Spring/gateways","sku":{"name":"E0","tier":"Enterprise","capacity":1},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/jiec-rg/providers/Microsoft.AppPlatform/Spring/jiec-e-eastasia/gateways/default","name":"default","systemData":{"createdBy":"jiec@microsoft.com","createdByType":"User","createdAt":"2023-10-15T05:27:16.5269715Z","lastModifiedBy":"jiec@microsoft.com","lastModifiedByType":"User","lastModifiedAt":"2023-11-22T02:44:19.2517752Z"}}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '1368'
+      content-type:
+      - application/json
+      date:
+      - Thu, 23 Nov 2023 12:47:23 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      request-context:
+      - appId=cid-v1:ccd65fc4-7cd4-497e-8dc8-9a76e9a43ae2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-rp-server-mvid:
+      - e3c96ca4-dc3f-4110-966d-484af991bfbd
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://jiec-e-eastasia.asc-test.net/api/logstream/managedComponents/springCloudGatewayOperator/instances/scg-operator-6d8895c44b-wcngh?tailLines=50&limitBytes=2097152
+  response:
+    body:
+      string: "2023-11-22T02:46:17.057Z ERROR 1 --- [PodController-1] c.v.t.s.r.ActuatorRoutesUpdater
+        \         : Error deleting Route with ID: scg-system-cart-service-3\n\ncom.vmware.tanzu.springcloudgateway.routeconfig.PodUpdateException:
+        Pod update failed, request to http://10.244.3.67:8090/actuator/gateway/routes/scg-system-cart-service-3
+        failed. Response code 404, message ''\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater$GatewayActuatorRoutesClient.throwPodUpdateException(ActuatorRoutesUpdater.java:336)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater$GatewayActuatorRoutesClient.call(ActuatorRoutesUpdater.java:313)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater$GatewayActuatorRoutesClient.deleteGatewayRoute(ActuatorRoutesUpdater.java:250)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater.deleteGatewayRoutesById(ActuatorRoutesUpdater.java:191)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater.lambda$deleteRoutesIfAnyRouteIsMissing$0(ActuatorRoutesUpdater.java:95)
+        ~[classes/:2.0.6]\n\tat java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.stream.ReferencePipeline$Head.forEach(Unknown
+        Source) ~[na:na]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater.deleteRoutesIfAnyRouteIsMissing(ActuatorRoutesUpdater.java:95)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater.updateMapping(ActuatorRoutesUpdater.java:129)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.gateway.PodReconciler.reconcile(PodReconciler.java:75)
+        ~[classes/:2.0.6]\n\tat io.kubernetes.client.extended.controller.DefaultController.worker(DefaultController.java:207)
+        ~[client-java-extended-17.0.2.jar:na]\n\tat io.kubernetes.client.extended.controller.DefaultController.lambda$run$1(DefaultController.java:154)
+        ~[client-java-extended-17.0.2.jar:na]\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown
+        Source) ~[na:na]\n\tat java.base/java.lang.Thread.run(Unknown Source) ~[na:na]\n\n2023-11-22T02:46:17.060Z
+        ERROR 1 --- [PodController-1] c.v.t.s.r.ActuatorRoutesUpdater          : Error
+        deleting Route with ID: scg-system-cart-service-4\n\ncom.vmware.tanzu.springcloudgateway.routeconfig.PodUpdateException:
+        Pod update failed, request to http://10.244.3.67:8090/actuator/gateway/routes/scg-system-cart-service-4
+        failed. Response code 404, message ''\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater$GatewayActuatorRoutesClient.throwPodUpdateException(ActuatorRoutesUpdater.java:336)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater$GatewayActuatorRoutesClient.call(ActuatorRoutesUpdater.java:313)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater$GatewayActuatorRoutesClient.deleteGatewayRoute(ActuatorRoutesUpdater.java:250)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater.deleteGatewayRoutesById(ActuatorRoutesUpdater.java:191)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater.lambda$deleteRoutesIfAnyRouteIsMissing$0(ActuatorRoutesUpdater.java:95)
+        ~[classes/:2.0.6]\n\tat java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.stream.ReferencePipeline$Head.forEach(Unknown
+        Source) ~[na:na]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater.deleteRoutesIfAnyRouteIsMissing(ActuatorRoutesUpdater.java:95)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.routeconfig.ActuatorRoutesUpdater.updateMapping(ActuatorRoutesUpdater.java:129)
+        ~[classes/:2.0.6]\n\tat com.vmware.tanzu.springcloudgateway.gateway.PodReconciler.reconcile(PodReconciler.java:75)
+        ~[classes/:2.0.6]\n\tat io.kubernetes.client.extended.controller.DefaultController.worker(DefaultController.java:207)
+        ~[client-java-extended-17.0.2.jar:na]\n\tat io.kubernetes.client.extended.controller.DefaultController.lambda$run$1(DefaultController.java:154)
+        ~[client-java-extended-17.0.2.jar:na]\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown
+        Source) ~[na:na]\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown
+        Source) ~[na:na]\n\tat java.base/java.lang.Thread.run(Unknown Source) ~[na:na]\n\n2023-11-22T02:46:17.254Z
+        \ WARN 1 --- [PodController-1] c.v.t.s.r.ActuatorRoutesUpdater          :
+        Failed to update the next routes: { title: 'null', uri: 'http://cart-service.default:80'
+        },{ title: 'null', uri: 'http://cart-service.default:80' },{ title: 'null',
+        uri: 'http://cart-service.default:80' },{ title: 'null', uri: 'http://cart-service.default:80'
+        },{ title: 'null', uri: 'http://cart-service.default:80' }\n2023-11-22T02:46:17.278Z
+        \ INFO 1 --- [PodController-1] c.v.t.s.gateway.PodStatusEditor          :
+        Setting Pod asc-scg-default-0 status to Ready=True\n2023-11-22T02:47:24.302Z
+        \ INFO 1 --- [wayController-3] c.v.t.s.g.SpringCloudGatewayReconciler   :
+        Desired service asc-scg-default is different from current. Applying patch
+        [{\"op\":\"remove\",\"path\":\"/spec/internalTrafficPolicy\"}]\n2023-11-22T02:47:24.312Z
+        \ INFO 1 --- [wayController-3] c.v.t.s.g.SpringCloudGatewayReconciler   :
+        Desired service asc-scg-default-headless is different from current. Applying
+        patch [{\"op\":\"remove\",\"path\":\"/spec/internalTrafficPolicy\"}]\n2023-11-22T02:47:24.318Z
+        \ WARN 1 --- [wayController-3] .v.t.s.g.TlsServerStatefulSetContributor :
+        Invalid configuration: found both spec.tls and spec.server.tls elements. Using
+        spec.server.tls\n2023-11-22T02:47:24.388Z  INFO 1 --- [wayController-3] c.v.t.s.gateway.StatefulSetBuilder
+        \      : Patching StatefulSet scg-system/asc-scg-default with desired state:
+        {\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"env\":[{\"name\":\"JDK_JAVA_OPTIONS\",\"value\":\"--add-exports
+        java.base/jdk.internal.ref=ALL-UNNAMED --add-exports java.base/sun.security.x509=ALL-UNNAMED
+        --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED
+        --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.management/sun.management=ALL-UNNAMED
+        --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED\"},{\"name\":\"SPRING_CLOUD_GATEWAY_FILTER_LOCAL_RESPONSE_CACHE_ENABLED\",\"value\":\"true\"},{\"name\":\"SPRING_CLOUD_GATEWAY_FILTER_LOCAL_RESPONSE_CACHE_SIZE\",\"value\":\"10MB\"},{\"name\":\"SPRING_CLOUD_GATEWAY_FILTER_LOCAL_RESPONSE_CACHE_TIME_TO_LIVE\",\"value\":\"60s\"},{\"name\":\"SPRING_CLOUD_GATEWAY_GLOBAL_FILTER_LOCAL_RESPONSE_CACHE_ENABLED\",\"value\":\"true\"},{\"name\":\"SPRING_CLOUD_GATEWAY_K8S_TLS_SERVERS_0_HOSTS_0\",\"value\":\"azure.com\"},{\"name\":\"SPRING_CLOUD_GATEWAY_K8S_TLS_SERVERS_0_SECRET\",\"value\":\"/workspace/tls/scg-shared-tls-secret\"},{\"name\":\"com.vmware.tanzu.springcloudgateway.version\",\"value\":\"2.0.6-1.0.02409.201-generic-528df519-2023-08-07\"},{\"name\":\"hazelcast.network.join.kubernetes.namespace\",\"value\":\"scg-system\"},{\"name\":\"hazelcast.network.join.kubernetes.service-name\",\"value\":\"asc-scg-default-headless\"},{\"name\":\"hazelcast.network.join.kubernetes.service-port\",\"value\":\"5701\"},{\"name\":\"logging.level.sun.net.www.protocol.http.HttpURLConnection\",\"value\":\"INFO\"},{\"name\":\"management.endpoint.gateway.enabled\",\"value\":\"true\"},{\"name\":\"management.endpoint.metrics.enabled\",\"value\":\"true\"},{\"name\":\"management.endpoints.web.exposure.include\",\"value\":\"gateway,health,info,conditions,configprops,metrics,prometheus\"},{\"name\":\"management.prometheus.metrics.export.enabled\",\"value\":\"true\"},{\"name\":\"management.tracing.enabled\",\"value\":\"false\"},{\"name\":\"management.wavefront.metrics.export.enabled\",\"value\":\"false\"},{\"name\":\"spring.cloud.gateway.httpclient.ssl.useInsecureTrustManager\",\"value\":\"true\"},{\"name\":\"spring.cloud.gateway.k8s.globalcors.allow-credentials\",\"value\":\"false\"},{\"name\":\"spring.cloud.gateway.metrics.enabled\",\"value\":\"true\"},{\"name\":\"spring.cloud.gateway.metrics.tags.path.enabled\",\"value\":\"true\"}],\"image\":\"serviceacr.azurecr.io/spring-cloud-gateway-for-kubernetes/gateway:2.0.6-1.0.02409.201-generic-528df519-2023-08-07\",\"imagePullPolicy\":\"IfNotPresent\",\"livenessProbe\":{\"failureThreshold\":10,\"httpGet\":{\"path\":\"actuator/health/liveness\",\"port\":8090,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":5,\"periodSeconds\":3,\"successThreshold\":1,\"timeoutSeconds\":1},\"name\":\"gateway\",\"readinessProbe\":{\"failureThreshold\":10,\"httpGet\":{\"path\":\"actuator/health/readiness\",\"port\":8090,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":5,\"periodSeconds\":3,\"successThreshold\":1,\"timeoutSeconds\":1},\"resources\":{\"limits\":{\"memory\":\"2Gi\",\"cpu\":\"1\"},\"requests\":{\"memory\":\"2Gi\",\"cpu\":\"1\"}},\"securityContext\":{\"allowPrivilegeEscalation\":false,\"privileged\":false},\"startupProbe\":{\"failureThreshold\":30,\"httpGet\":{\"path\":\"actuator/health/readiness\",\"port\":8090,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":10,\"periodSeconds\":3,\"successThreshold\":1,\"timeoutSeconds\":1},\"volumeMounts\":[{\"mountPath\":\"/workspace/tls/scg-shared-tls-secret\",\"name\":\"tls-scg-shared-tls-secret\",\"readOnly\":false}],\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\"}],\"volumes\":[{\"name\":\"tls-scg-shared-tls-secret\",\"secret\":{\"secretName\":\"scg-shared-tls-secret\"}}],\"initContainers\":[]}}}}\n"
+    headers:
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-headers:
+      - DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization
+      access-control-allow-methods:
+      - GET, OPTIONS
+      access-control-allow-origin:
+      - '*'
+      access-control-max-age:
+      - '1728000'
+      connection:
+      - keep-alive
+      content-type:
+      - text/plain
+      date:
+      - Thu, 23 Nov 2023 12:47:24 GMT
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1
