@@ -1659,8 +1659,35 @@ helps['spring job deploy'] = """
     type: command
     short-summary: Deploy artifact to a job and update related configurations.
     examples:
-    - name: Deploy a pre-built jar to a job with jvm options and environment variables.
-      text: az spring job deploy -n MyJob -s MyCluster -g MyResourceGroup --artifact-path app.jar --jvm-options="-XX:+UseG1GC -XX:+UseStringDeduplication" --env foo=bar
-    - name: Deploy a pre-built jar to a job with build env.
-      text: az spring job deploy -n MyJob -s MyCluster -g MyResourceGroup --artifact-path app.jar --build-env BP_JVM_VERSION=11.*
+        - name: Deploy a pre-built jar to a job with jvm options and environment variables.
+          text: az spring job deploy -n MyJob -s MyService -g MyResourceGroup --artifact-path app.jar --jvm-options="-XX:+UseG1GC -XX:+UseStringDeduplication" --env foo=bar
+        - name: Deploy a pre-built jar to a job with build env.
+          text: az spring job deploy -n MyJob -s MyService -g MyResourceGroup --artifact-path app.jar --build-env BP_JVM_VERSION=11.*
+"""
+
+helps['spring job execution instance'] = """
+    type: group
+    short-summary: (Enterprise Tier Only) Commands to manage job execution instances of Azure Spring Apps service.
+"""
+
+helps['spring job execution instance list'] = """
+    type: command
+    short-summary: List all instances of the job execution.
+    examples:
+        - name: List all instances of the job execution.
+          text: az spring job execution instance list --job-name MyJob --job-execution-name MyJobExecution -s MyService -g MyResourceGroup
+"""
+
+helps['spring job logs'] = """
+    type: command
+    short-summary: (Enterprise Tier Only) Show logs for job execution instances. Logs will be streamed when setting '-f/--follow'.
+    examples:
+        - name: Show logs for all instances of a job execution.
+          text: az spring job logs --job-name MyJob --job-execution-name MyJobExecution --all-instances -s MyService -g MyResourceGroup
+        - name: Show logs for a specific instance of a job execution.
+          text: az spring job logs --job-name MyJob --job-execution-name MyJobExecution --instance MyJobExecutionInstance -s MyService -g MyResourceGroup
+        - name: Stream and watch logs for all instances of a job execution.
+          text: az spring job logs --job-name MyJob --job-execution-name MyJobExecution --all-instances --follow -s MyService -g MyResourceGroup
+        - name: Stream and watch logs for a specific instance of a job execution.
+          text: az spring job logs --job-name MyJob --job-execution-name MyJobExecution --instance MyJobExecutionInstance --follow -s MyService -g MyResourceGroup
 """

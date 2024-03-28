@@ -1116,6 +1116,20 @@ def load_arguments(self, _):
         with self.argument_context(scope) as c:
             c.argument('service', service_name_type)
 
+    def prepare_common_logs_argument(c):
+        c.argument('follow',
+                   options_list=['--follow ', '-f'],
+                   help='The flag to indicate logs should be streamed.',
+                   action='store_true')
+        c.argument('lines',
+                   type=int,
+                   help='Number of lines to show. Maximum is 10000.')
+        c.argument('since',
+                   help='Only return logs newer than a relative duration like 5s, 2m, or 1h. Maximum is 1h')
+        c.argument('limit',
+                   type=int,
+                   help='Maximum kibibyte of logs to return. Ceiling number is 2048.')
+
     with self.argument_context('spring component logs') as c:
         c.argument('name', options_list=['--name', '-n'],
                    help="Name of the component. Find component names from command `az spring component list`")
@@ -1125,21 +1139,10 @@ def load_arguments(self, _):
         c.argument('instance',
                    options_list=['--instance', '-i'],
                    help='Name of an existing instance of the component.')
-        c.argument('follow',
-                   options_list=['--follow ', '-f'],
-                   help='The flag to indicate logs should be streamed.',
-                   action='store_true')
-        c.argument('lines',
-                   type=int,
-                   help='Number of lines to show. Maximum is 10000. Default is 50.')
-        c.argument('since',
-                   help='Only return logs newer than a relative duration like 5s, 2m, or 1h. Maximum is 1h')
-        c.argument('limit',
-                   type=int,
-                   help='Maximum kibibyte of logs to return. Ceiling number is 2048.')
         c.argument('max_log_requests',
                    type=int,
                    help="Specify maximum number of concurrent logs to follow when get logs by all-instances.")
+        prepare_common_logs_argument(c)
 
     with self.argument_context('spring component instance') as c:
         c.argument('component', options_list=['--component', '-c'],
@@ -1148,10 +1151,36 @@ def load_arguments(self, _):
     with self.argument_context('spring job list') as c:
         c.argument('service', service_name_type, validator=only_support_enterprise)
 
-    for scope in ['spring job create', 'spring job update', 'spring job deploy', 'spring job start', 'spring job show', 'spring job delete', 'spring job execution list', 'spring job execution show', 'spring job execution cancel']:
+    for scope in ['spring job create', 'spring job update', 'spring job deploy', 'spring job start', 'spring job show', 'spring job delete']:
         with self.argument_context(scope) as c:
             c.argument('service', service_name_type, validator=only_support_enterprise)
             c.argument('name', name_type, help='The name of job running in the specified Azure Spring Apps instance.')
+
+    with self.argument_context('spring job logs') as c:
+        c.argument('service', service_name_type, validator=only_support_enterprise)
+        c.argument('name', name_type, help='The name of the job running in the specified Azure Spring Apps instance.')
+        c.argument('execution', help='the name of the job execution.')
+        c.argument('all_instances',
+                   help='The flag to indicate get logs for all instances of the job execution.',
+                   action='store_true')
+        c.argument('instance',
+                   options_list=['--instance', '-i'],
+                   help='Name of an existing instance of the job execution. Find instance names from command `az spring job execution instance list`.')
+        c.argument('max_log_requests',
+                   type=int,
+                   help="Specify maximum number of concurrent logs to follow when get logs by all-instances.")
+        prepare_common_logs_argument(c)
+
+    for scope in ['spring job execution list', 'spring job execution show', 'spring job execution cancel']:
+        with self.argument_context(scope) as c:
+            c.argument('service', service_name_type, validator=only_support_enterprise)
+            c.argument('name', name_type, help='The name of job execution running in the specified Azure Spring Apps instance.')
+            c.argument('job', help='The name of job running in the specified Azure Spring Apps instance.')
+
+    with self.argument_context('spring job execution instance list') as c:
+        c.argument('service', service_name_type, validator=only_support_enterprise)
+        c.argument('execution', help='the name of the job execution.')
+        c.argument('job', help='The name of job running in the specified Azure Spring Apps instance.')
 
     with self.argument_context('spring job deploy') as c:
         c.argument('builder', help='(Enterprise Tier Only) Build service builder used to build the executable.', default='default')

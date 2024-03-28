@@ -163,22 +163,33 @@ def job_start(cmd, client, resource_group, service, name,
         return _poll_until_job_end(cmd, client, resource_group, service, name, execution_name)
 
 
+def job_log_stream(cmd, client, resource_group, service, name, execution=None, all_instances=None, instance=None,
+             follow=None, max_log_requests=5, lines=50, since=None, limit=2048):
+    # TODO(jiec): add logics here in the future.
+    return '[{"line1": "logs_1"},{"line2": "logs_2"}]'
+
+
 def job_execution_cancel(cmd, client,
              resource_group,
              service,
-             job_name,
-             job_execution_name,
+             job,
+             name,
              no_wait=False):
     return sdk_no_wait(no_wait, client.job_execution.begin_cancel,
-                       resource_group, service, job_name, job_execution_name)
+                       resource_group, service, job, name)
 
 
-def job_execution_get(cmd, client, resource_group, service, job_name, job_execution_name):
-    return client.job_execution.get(resource_group, service, job_name, job_execution_name)
+def job_execution_get(cmd, client, resource_group, service, job, name):
+    return client.job_execution.get(resource_group, service, job, name)
 
 
-def job_execution_list(cmd, client, resource_group, service, job_name):
-    return client.job_executions.list(resource_group, service, job_name)
+def job_execution_list(cmd, client, resource_group, service, job):
+    return client.job_executions.list(resource_group, service, job)
+
+
+def job_execution_instance_list(cmd, client, resource_group, service, job, execution):
+    # TODO(jiec): add logics here in the future.
+    return '[{"name":"instance_1"},{"name":"instance_2"}]'
 
 
 def _ensure_job_not_exist(client, resource_group, service, name):
