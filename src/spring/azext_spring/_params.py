@@ -8,8 +8,8 @@ from knack.arguments import CLIArgumentType
 from azure.cli.core.commands.parameters import get_enum_type, get_three_state_flag, tags_type
 from azure.cli.core.commands.parameters import (name_type, get_location_type, resource_group_name_type)
 from ._validators import (validate_env, validate_cosmos_type, validate_resource_id, validate_location,
-                          validate_name, validate_app_name, validate_deployment_name, validate_log_lines,
-                          validate_log_limit, validate_log_since, validate_sku, normalize_sku, validate_jvm_options,
+                          validate_name, validate_app_name, validate_deployment_name, validate_sku,
+                          normalize_sku, validate_jvm_options,
                           validate_vnet, validate_vnet_required_parameters, validate_node_resource_group,
                           validate_tracing_parameters_asc_create, validate_tracing_parameters_asc_update,
                           validate_app_insights_parameters, validate_instance_count, validate_java_agent_parameters,
@@ -18,6 +18,7 @@ from ._validators import (validate_env, validate_cosmos_type, validate_resource_
                           validate_remote_debugging_port, validate_ingress_client_auth_certificates,
                           validate_managed_environment, validate_dataplane_public_endpoint, validate_server_version,
                           validate_planned_maintenance)
+from .log_stream.log_stream_validators import (validate_log_lines, validate_log_limit, validate_log_since)
 from ._validators_enterprise import (only_support_enterprise, validate_builder_resource, validate_builder_create,
                                      validate_source_path, validate_artifact_path, validate_build_create,
                                      validate_build_update, validate_container_registry_create,

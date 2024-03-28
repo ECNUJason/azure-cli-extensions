@@ -33,6 +33,7 @@ from ._validators import validate_app_insights_command_not_supported_tier
 from ._marketplace import (transform_marketplace_plan_output)
 from ._validators_enterprise import (validate_gateway_update, validate_api_portal_update, validate_dev_tool_portal,
                                      validate_customized_accelerator, validate_pattern_for_show_acs_configs)
+from .jobs.job_validators import (validate_job_log_stream)
 from .managed_components.validators_managed_component import (validate_component_logs, validate_component_list, validate_instance_list)
 from ._app_managed_identity_validator import (validate_app_identity_remove_or_warning,
                                               validate_app_identity_assign_or_warning)
@@ -126,7 +127,7 @@ def load_command_table(self, _):
     )
 
     job_cmd_group = CliCommandType(
-        operations_tmpl='azext_spring.job#{}',
+        operations_tmpl='azext_spring.jobs.job#{}',
         client_factory=cf_spring
     )
 
@@ -496,7 +497,7 @@ def load_command_table(self, _):
         g.custom_command('list', 'job_list', supports_no_wait=True, is_preview=True)
         g.custom_command('deploy', 'job_deploy', supports_no_wait=True, is_preview=True)
         g.custom_command('start', 'job_start', supports_no_wait=True, is_preview=True)
-        g.custom_command('logs', 'job_log_stream', is_preview=True)
+        g.custom_command('logs', 'job_log_stream', is_preview=True, validator=validate_job_log_stream)
 
     with self.command_group('spring job execution', custom_command_type=job_cmd_group,
                             exception_handler=handle_asc_exception) as g:
