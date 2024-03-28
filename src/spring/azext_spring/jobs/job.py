@@ -7,7 +7,7 @@
 from knack.log import get_logger
 from azure.cli.core.util import sdk_no_wait
 from azure.cli.core.azclierror import (ValidationError)
-from azext_spring.jobs._job_deployable_factory import deployable_selector
+from azext_spring.jobs.job_deployable_factory import deployable_selector
 from azext_spring._utils import wait_till_end
 from azext_spring.vendored_sdks.appplatform.v2024_01_01_preview import models
 import shlex
