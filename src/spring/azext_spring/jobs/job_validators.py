@@ -11,7 +11,7 @@ from ..log_stream.log_stream_validators import (validate_log_limit, validate_log
 
 logger = get_logger(__name__)
 
-
+# TODO(jiec): examine the validation logic here again and add unit test to protect from changes.
 def validate_job_log_stream(cmd, namespace):
     _validate_mutual_exclusive_param(namespace)
     _validate_required_param(namespace)
