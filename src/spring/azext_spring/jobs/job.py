@@ -324,9 +324,37 @@ def _parse_job_execution_instances(response_json):
       ]
     }
     '''
+
+    a='''
+    {
+      "name": "哈哈哈哈",
+      "value": [
+        {
+          "properties": {
+            "name": "sample-job-execution-instance-1",
+            "onemorething": "234234234"
+          }
+        },
+        {
+          "properties": {
+            "name": "sample-job-execution-instance-2"
+          }
+        }
+      ]
+    }
+    '''
     print(type(response_json))
+    print(a)
     import json
-    p = JobExecutionInstanceCollection(**json.loads(response_json.decode('utf-8')))
+    p = JobExecutionInstanceCollection(**json.loads(a))
+
+    for i in p.value:
+        print("debug ---- ")
+        print(type(i))
+        print(type(i.properties))
+        print(type(i.properties.onemorething))
+
+    # p = JobExecutionInstanceCollection(**json.loads(response_json.decode('utf-8')))
     return p
 
 

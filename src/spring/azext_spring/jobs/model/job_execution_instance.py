@@ -2,29 +2,42 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
-import json
 
 
 class JobExecutionInstanceProperties:
-    name: str
+    _name: str
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name, **kwargs):
+        self.name = kwargs.get('name', None)
+
+    def name(self):
+        return self._name
 
 
 class JobExecutionInstance:
-    properties: JobExecutionInstanceProperties
+    _properties: JobExecutionInstanceProperties
 
-    def __init__(self, properties):
-        self.properties = properties
+    def __init__(self, properties, **_):
+        if properties is None:
+            raise CLIError("`properties` is a required field for JobExecutionInstance.")
 
+        self._properties = JobExecutionInstanceProperties(**properties)
 
+    def properties(self):
+        return self._properties
+
+# TODO(jiec): Refer to C:\Users\jiec\devops\projects\public\AzureCLI\20240207-python-3.11\show-acs-configs\azure-cli-extensions\src\spring\azext_spring\vendored_sdks\appplatform\_serialization.py
 class JobExecutionInstanceCollection:
-    value: list[JobExecutionInstance] = []
+    _value: list[JobExecutionInstance] = []
 
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, value, **_):
+        if value is None:
+            self._value = None
+            return
 
-    @classmethod
-    def from_json(cls, json_string):
-        data = json.loads(json_string)
+        if isinstance(value, list):
+            for instance_response in value:
+                self.value.append(JobExecutionInstance(**instance_response))
+
+    def value(self):
+        return self._value
