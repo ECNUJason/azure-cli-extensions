@@ -9,9 +9,9 @@ from knack.log import get_logger
 
 from .._clierror import NotSupportedPricingTierError
 from .._util_enterprise import is_enterprise_tier
-from ..log_stream.log_stream_validators import validate_all_instances_and_instance_are_mutually_exclusive
 from ..log_stream.log_stream_validators import (validate_log_limit, validate_log_lines, validate_log_since,
-                                                validate_max_log_requests)
+                                                validate_max_log_requests,
+                                                validate_all_instances_and_instance_are_mutually_exclusive)
 from ..managed_components.managed_component import supported_components
 
 logger = get_logger(__name__)
