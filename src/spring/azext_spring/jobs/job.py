@@ -3,16 +3,20 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-# pylint: disable=wrong-import-order
-from knack.log import get_logger
-from azure.cli.core.util import sdk_no_wait
-from azure.cli.core.azclierror import (ValidationError)
-from azext_spring.jobs.job_deployable_factory import deployable_selector
-from azext_spring._utils import wait_till_end
-from azext_spring.vendored_sdks.appplatform.v2024_01_01_preview import models
 import shlex
-from json import JSONEncoder
 import time
+from json import JSONEncoder
+
+import requests
+from azext_spring._utils import (get_hostname, get_bearer_auth, wait_till_end)
+from azext_spring.vendored_sdks.appplatform.v2024_01_01_preview import models
+from azure.cli.core.azclierror import (ValidationError)
+from azure.cli.core.util import sdk_no_wait
+from knack.log import get_logger
+from knack.util import CLIError
+
+from .job_deployable_factory import deployable_selector
+from .model.job_execution_instance import JobExecutionInstanceCollection
 
 logger = get_logger(__name__)
 
@@ -187,8 +191,7 @@ def job_execution_list(cmd, client, resource_group, service, job):
 
 
 def job_execution_instance_list(cmd, client, resource_group, service, job, execution):
-    # TODO(jiec): add logics here in the future.
-    return '[{"name":"instance_1"},{"name":"instance_2"}]'
+    return _list_job_execution_instances(cmd, client, resource_group, service, job, execution)
 
 
 def _ensure_job_not_exist(client, resource_group, service, name):
@@ -271,3 +274,68 @@ def _poll_until_job_end(cmd, client, resource_group, service, job_name, job_exec
         else:
             logger.warning("Job execution '{}' is in status '{}'. Polling again in 10 second...".format(job_execution_name, status))
         time.sleep(10)
+
+
+def _list_job_execution_instances(cmd, client, resource_group, service, job, execution):
+    auth = get_bearer_auth(cmd.cli_ctx)
+    url = _get_list_job_execution_instances_url(cmd, client, resource_group, service, job, execution)
+    connect_timeout_in_seconds = 30
+    read_timeout_in_seconds = 60
+    timeout = (connect_timeout_in_seconds, read_timeout_in_seconds)
+    with requests.get(url, stream=False, auth=auth, timeout=timeout) as response:
+        if response.status_code != 200:
+            _handle_and_raise_list_job_execution_instance_error(url, response)
+        response_json = response.json()
+        return _parse_job_execution_instances(response.content)
+
+
+def _get_list_job_execution_instances_url(cmd, client, resource_group, service, job, execution):
+    hostname = get_hostname(cmd, client, resource_group, service)
+    return f"https://{hostname}/api/jobs/{job}/executions/{execution}/instances";
+
+
+def _handle_and_raise_list_job_execution_instance_error(url, response):
+    failure_reason = response.reason
+    if response.content:
+        if isinstance(response.content, bytes):
+            failure_reason = f"{failure_reason}:{response.content.decode('utf-8')}"
+        else:
+            failure_reason = f"{failure_reason}:{response.content}"
+    msg = f"Failed to access the url '{url}' with status code '{response.status_code}' and reason '{failure_reason}'"
+    raise CLIError(msg)
+
+
+# TODO(jiec): Need more works to do the string to object converter
+def _parse_job_execution_instances(response_json):
+    '''
+    The response from Data Plane API is expected at below:
+    {
+      "value": [
+        {
+          "properties": {
+            "name": "sample-job-execution-instance-1"
+          }
+        },
+        {
+          "properties": {
+            "name": "sample-job-execution-instance-2"
+          }
+        }
+      ]
+    }
+    '''
+    print(type(response_json))
+    import json
+    p = JobExecutionInstanceCollection(**json.loads(response_json.decode('utf-8')))
+    return p
+
+
+    # VALUE = "value"
+    #
+    # if (type(response_json) != dict) or not (VALUE in dict(response_json).keys()):
+    #     raise CLIError("Not supported response body '{}'".format(response_json))
+    #
+    # for instance in response_json[VALUE]:
+    #     print(type(instance))
+    #
+    # return response_json
