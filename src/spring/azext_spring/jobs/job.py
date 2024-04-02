@@ -15,8 +15,12 @@ from azure.cli.core.util import sdk_no_wait
 from knack.log import get_logger
 from knack.util import CLIError
 
+from ._utils import (get_hostname, get_bearer_auth)
 from .job_deployable_factory import deployable_selector
 from .model.job_execution_instance import (JobExecutionInstanceCollection, JobExecutionInstance)
+from ..log_stream.log_stream_operations import (attach_logs_query_options, log_stream_from_url,
+                                                LogStreamBaseQueryOptions)
+from ..log_stream.log_stream_validators import validate_max_log_requests
 
 logger = get_logger(__name__)
 
@@ -169,7 +173,22 @@ def job_start(cmd, client, resource_group, service, name,
 def job_log_stream(cmd, client, resource_group, service, name, execution, all_instances=None, instance=None,
                    follow=None, max_log_requests=5, lines=50, since=None, limit=2048):
     # TODO(jiec): add logics here in the future.
-    return '[{"line1": "logs_1"},{"line2": "logs_2"}]'
+    # return '[{"line1": "logs_1"},{"line2": "logs_2"}]'
+
+    queryOptions = LogStreamBaseQueryOptions(follow=follow, lines=lines, since=since, limit=limit)
+    url_dict = _get_log_stream_urls(cmd, client, resource_group, service, name, execution, all_instances,
+                                    instance, queryOptions)
+    validate_max_log_requests(len(url_dict), max_log_requests)
+    auth = get_bearer_auth(cmd)
+    threads = _get_log_threads(all_instances, url_dict, auth, exceptions)
+
+    if follow and len(threads) > 1:
+        _parallel_start_threads(threads)
+    else:
+        _sequential_start_threads(threads)
+
+    if exceptions:
+        raise exceptions[0]
 
 
 def job_execution_cancel(cmd, client,
@@ -276,7 +295,7 @@ def _poll_until_job_end(cmd, client, resource_group, service, job_name, job_exec
         time.sleep(10)
 
 
-def _list_job_execution_instances(cmd, client, resource_group, service, job, execution):
+def _list_job_execution_instances(cmd, client, resource_group, service, job, execution) -> [JobExecutionInstance]:
     auth = get_bearer_auth(cmd.cli_ctx)
     url = _get_list_job_execution_instances_url(cmd, client, resource_group, service, job, execution)
     connect_timeout_in_seconds = 30
@@ -310,3 +329,78 @@ def _parse_job_execution_instances(response_json) -> [JobExecutionInstance]:
         raise CLIError("Failed to parse the response '{}'".format(response_json))
 
     return p.value
+
+
+def _get_log_stream_urls(cmd, client, resource_group, service, job_name, execution_name,
+                         all_instances, instance, queryOptions: LogStreamBaseQueryOptions):
+    hostname = get_hostname(cmd.cli_ctx, client, resource_group, service)
+    url_dict = {}
+
+    if not all_instances and not instance:
+        logger.warning("No `-i/--instance` or `--all-instances` parameters specified.")
+        instances: [JobExecutionInstance] = _list_job_execution_instances(cmd, client, resource_group, service,
+                                                                          job_name, execution_name)
+        if instances is None or len(instances) == 0:
+            logger.warning(f"No instances found for job execution: '{job_name}/{execution_name}'.")
+            return url_dict
+        elif instances is not None and len(instances) > 1:
+            logger.warning("Multiple instances found:")
+            for temp_instance in instances:
+                logger.warning("{}".format(temp_instance.name))
+            logger.warning("Please use '-i/--instance' parameter to specify the instance name, "
+                           "or use `--all-instance` parameter to get logs for all instances.")
+            return url_dict
+        elif instances is not None and len(instances) == 1:
+            logger.warning("Exact one instance found, will get logs for it:")
+            logger.warning('{}'.format(instances[0].name))
+            # Make it as if user has specified exact instance name
+            instance = instances[0].name
+
+    if all_instances is True:
+        instances: [JobExecutionInstance] = _list_job_execution_instances(cmd, client, resource_group, service,
+                                                                          job_name, execution_name)
+        if instances is None or len(instances) == 0:
+            logger.warning(f"No instances found for job execution: '{job_name}/{execution_name}'.")
+            return url_dict
+        for i in instances:
+            url = _get_log_stream_url(hostname, job_name, execution_name, i.name, queryOptions)
+            url_dict[url] = JobExecutionInstance(i.name)
+    elif instance:
+        url = _get_log_stream_url(hostname, job_name, execution_name, instance, queryOptions)
+        url_dict[url] = JobExecutionInstance(i.name)
+
+    return url_dict
+
+
+def _get_log_stream_url(hostname, job_name, execution_name, job_execution_instance_name, queryOptions: QueryOptions):
+    url_template = "https://{}/api/jobs/{}/executions/{}/instances/{}/logstream"
+    url = url_template.format(hostname, job_name, execution_name, job_execution_instance_name)
+    url = attach_logs_query_options(url, queryOptions)
+    return url
+
+
+def _get_log_threads(all_instances, url_dict, auth, exceptions):
+    threads = []
+    need_prefix = all_instances is True
+    for url in url_dict.keys():
+        writer = _get_default_writer()
+        if need_prefix:
+            instance_info = url_dict[url]
+            prefix = "[{}]".format(instance_info.name)
+            writer = _get_prefix_writer(prefix)
+        threads.append(Thread(target=log_stream_from_url, args=(url, auth, None, exceptions, writer)))
+    return threads
+
+
+def _get_prefix_writer(prefix):
+    """
+    Define this method, so that we can mock this method in scenario test to test output
+    """
+    return PrefixWriter(prefix)
+
+
+def _get_default_writer():
+    """
+    Define this method, so that we can mock this method in scenario test to test output
+    """
+    return DefaultWriter()

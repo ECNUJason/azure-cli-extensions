@@ -17,6 +17,27 @@ from .writer import DefaultWriter
 logger = get_logger(__name__)
 
 
+class LogStreamBaseQueryOptions:
+    def __init__(self, follow, lines, since, limit):
+        self.follow = follow
+        self.lines = lines
+        self.since = since
+        self.limit = limit
+
+
+def attach_logs_query_options(url, queryOptions: LogStreamBaseQueryOptions):
+    params = {}
+    params["tailLines"] = queryOptions.lines
+    params["limitBytes"] = queryOptions.limit
+    if queryOptions.since:
+        params["sinceSeconds"] = queryOptions.since
+    if queryOptions.follow:
+        params["follow"] = True
+
+    url += "?{}".format(parse.urlencode(params)) if params else ""
+    return url
+
+
 # pylint: disable=bare-except, too-many-statements
 def iter_lines(response, limit=2 ** 20, chunk_size=None):
     '''
