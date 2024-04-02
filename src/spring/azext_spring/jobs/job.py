@@ -16,7 +16,7 @@ from knack.log import get_logger
 from knack.util import CLIError
 
 from .job_deployable_factory import deployable_selector
-from .model.job_execution_instance import JobExecutionInstanceCollection
+from .model.job_execution_instance import (JobExecutionInstanceCollection, JobExecutionInstance)
 
 logger = get_logger(__name__)
 
@@ -167,7 +167,7 @@ def job_start(cmd, client, resource_group, service, name,
 
 
 def job_log_stream(cmd, client, resource_group, service, name, execution, all_instances=None, instance=None,
-             follow=None, max_log_requests=5, lines=50, since=None, limit=2048):
+                   follow=None, max_log_requests=5, lines=50, since=None, limit=2048):
     # TODO(jiec): add logics here in the future.
     return '[{"line1": "logs_1"},{"line2": "logs_2"}]'
 
@@ -285,8 +285,7 @@ def _list_job_execution_instances(cmd, client, resource_group, service, job, exe
     with requests.get(url, stream=False, auth=auth, timeout=timeout) as response:
         if response.status_code != 200:
             _handle_and_raise_list_job_execution_instance_error(url, response)
-        response_json = response.json()
-        return _parse_job_execution_instances(response.content)
+        return _parse_job_execution_instances(response.json())
 
 
 def _get_list_job_execution_instances_url(cmd, client, resource_group, service, job, execution):
@@ -305,65 +304,9 @@ def _handle_and_raise_list_job_execution_instance_error(url, response):
     raise CLIError(msg)
 
 
-# TODO(jiec): Need more works to do the string to object converter
-def _parse_job_execution_instances(response_json):
-    '''
-    The response from Data Plane API is expected at below:
-    {
-      "value": [
-        {
-          "properties": {
-            "name": "sample-job-execution-instance-1"
-          }
-        },
-        {
-          "properties": {
-            "name": "sample-job-execution-instance-2"
-          }
-        }
-      ]
-    }
-    '''
+def _parse_job_execution_instances(response_json) -> [JobExecutionInstance]:
+    p = JobExecutionInstanceCollection.deserialize(response_json)
+    if p.value is None:
+        raise CLIError("Failed to parse the response '{}'".format(response_json))
 
-    a='''
-    {
-      "name": "哈哈哈哈",
-      "value": [
-        {
-          "properties": {
-            "name": "sample-job-execution-instance-1",
-            "onemorething": "234234234"
-          }
-        },
-        {
-          "properties": {
-            "name": "sample-job-execution-instance-2"
-          }
-        }
-      ]
-    }
-    '''
-    print(type(response_json))
-    print(a)
-    import json
-    p = JobExecutionInstanceCollection(**json.loads(a))
-
-    for i in p.value:
-        print("debug ---- ")
-        print(type(i))
-        print(type(i.properties))
-        print(type(i.properties.onemorething))
-
-    # p = JobExecutionInstanceCollection(**json.loads(response_json.decode('utf-8')))
-    return p
-
-
-    # VALUE = "value"
-    #
-    # if (type(response_json) != dict) or not (VALUE in dict(response_json).keys()):
-    #     raise CLIError("Not supported response body '{}'".format(response_json))
-    #
-    # for instance in response_json[VALUE]:
-    #     print(type(instance))
-    #
-    # return response_json
+    return p.value
