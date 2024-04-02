@@ -166,7 +166,7 @@ def job_start(cmd, client, resource_group, service, name,
         return _poll_until_job_end(cmd, client, resource_group, service, name, execution_name)
 
 
-def job_log_stream(cmd, client, resource_group, service, name, execution=None, all_instances=None, instance=None,
+def job_log_stream(cmd, client, resource_group, service, name, execution, all_instances=None, instance=None,
              follow=None, max_log_requests=5, lines=50, since=None, limit=2048):
     # TODO(jiec): add logics here in the future.
     return '[{"line1": "logs_1"},{"line2": "logs_2"}]'

@@ -30,21 +30,6 @@ class TestValidateJobLogStream(unittest.TestCase):
 
         self.assertEquals("--all-instances cannot be set together with --instance/-i.", str(context.exception))
 
-    def test_execution_name_not_set_and_instance_is_not_none(self):
-        ns = Namespace(
-            resource_group="group",
-            service="service",
-            name="fake-job-name",
-            execution=None,
-            all_instances=None,
-            instance="fake-instance-name"
-        )
-
-        with self.assertRaises(InvalidArgumentValueError) as context:
-            validate_job_log_stream(ns)
-
-        self.assertEquals("When --instance/-i is set, --execution is required.", str(context.exception))
-
     def test_execution_name_not_set_and_instance_is_none(self):
         ns = Namespace(
             resource_group="group",
