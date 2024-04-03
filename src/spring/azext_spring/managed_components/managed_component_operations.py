@@ -39,7 +39,7 @@ def managed_component_logs(cmd, client, resource_group, service,
     else:
         url_dict = _get_log_stream_urls(cmd, client, resource_group, service, name, all_instances,
                                         instance, queryOptions)
-        validate_max_log_requests(len(url_dict), max_log_requests)
+        validate_thread_number(len(url_dict), max_log_requests)
         threads = _get_log_threads(all_instances, url_dict, auth, exceptions)
 
     if follow and len(threads) > 1:

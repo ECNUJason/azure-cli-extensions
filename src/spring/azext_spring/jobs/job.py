@@ -2,10 +2,11 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
-
 import shlex
 import time
 from json import JSONEncoder
+from threading import Thread
+from time import sleep
 
 import requests
 from azext_spring._utils import (get_hostname, get_bearer_auth, wait_till_end)
@@ -15,12 +16,12 @@ from azure.cli.core.util import sdk_no_wait
 from knack.log import get_logger
 from knack.util import CLIError
 
-from ._utils import (get_hostname, get_bearer_auth)
 from .job_deployable_factory import deployable_selector
 from .model.job_execution_instance import (JobExecutionInstanceCollection, JobExecutionInstance)
 from ..log_stream.log_stream_operations import (attach_logs_query_options, log_stream_from_url,
                                                 LogStreamBaseQueryOptions)
-from ..log_stream.log_stream_validators import validate_max_log_requests
+from ..log_stream.log_stream_validators import validate_thread_number
+from ..log_stream.writer import (DefaultWriter, PrefixWriter)
 
 logger = get_logger(__name__)
 
@@ -178,8 +179,9 @@ def job_log_stream(cmd, client, resource_group, service, name, execution, all_in
     queryOptions = LogStreamBaseQueryOptions(follow=follow, lines=lines, since=since, limit=limit)
     url_dict = _get_log_stream_urls(cmd, client, resource_group, service, name, execution, all_instances,
                                     instance, queryOptions)
-    validate_max_log_requests(len(url_dict), max_log_requests)
-    auth = get_bearer_auth(cmd)
+    validate_thread_number(len(url_dict), max_log_requests)
+    auth = get_bearer_auth(cmd.cli_ctx)
+    exceptions = []
     threads = _get_log_threads(all_instances, url_dict, auth, exceptions)
 
     if follow and len(threads) > 1:
@@ -364,15 +366,16 @@ def _get_log_stream_urls(cmd, client, resource_group, service, job_name, executi
             return url_dict
         for i in instances:
             url = _get_log_stream_url(hostname, job_name, execution_name, i.name, queryOptions)
-            url_dict[url] = JobExecutionInstance(i.name)
+            url_dict[url] = JobExecutionInstance(name=i.name)
     elif instance:
         url = _get_log_stream_url(hostname, job_name, execution_name, instance, queryOptions)
-        url_dict[url] = JobExecutionInstance(i.name)
+        url_dict[url] = JobExecutionInstance(name=instance)
 
     return url_dict
 
 
-def _get_log_stream_url(hostname, job_name, execution_name, job_execution_instance_name, queryOptions: QueryOptions):
+def _get_log_stream_url(hostname, job_name, execution_name, job_execution_instance_name,
+                        queryOptions: LogStreamBaseQueryOptions):
     url_template = "https://{}/api/jobs/{}/executions/{}/instances/{}/logstream"
     url = url_template.format(hostname, job_name, execution_name, job_execution_instance_name)
     url = attach_logs_query_options(url, queryOptions)
@@ -404,3 +407,23 @@ def _get_default_writer():
     Define this method, so that we can mock this method in scenario test to test output
     """
     return DefaultWriter()
+
+
+def _parallel_start_threads(threads: [Thread]):
+    for t in threads:
+        t.daemon = True
+        t.start()
+
+    while _contains_alive_thread(threads):
+        sleep(1)
+        # so that ctrl+c can stop the command
+
+
+def _sequential_start_threads(threads: [Thread]):
+    for idx, t in enumerate(threads):
+        t.daemon = True
+        t.start()
+
+        while t.is_alive():
+            sleep(1)
+            # so that ctrl+c can stop the command

@@ -61,7 +61,7 @@ def validate_max_log_requests(namespace):
         raise InvalidArgumentValueError("--max-log-requests should be larger than 0.")
 
 
-def validate_max_log_requests(thread_number, follow):
+def validate_thread_number(thread_number, follow):
     if (follow is True and thread_number > max_log_requests):
         raise CLIError("You are attempting to follow {} log streams, but maximum allowed concurrency is {}, "
                        "use --max-log-requests to increase the limit".format(thread_number, max_log_requests))

@@ -2,17 +2,18 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
-import re
-import requests
 import json
+import re
 import sys
-
-from azure.cli.core.azclierror import InvalidArgumentValueError
 from collections import defaultdict
+
+import requests
+from azure.cli.core.azclierror import InvalidArgumentValueError
 from knack.log import get_logger
 from knack.util import CLIError
-from .writer import DefaultWriter
+from six.moves.urllib import parse
 
+from .writer import DefaultWriter
 
 logger = get_logger(__name__)
 
