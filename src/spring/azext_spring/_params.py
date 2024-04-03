@@ -8,8 +8,8 @@ from knack.arguments import CLIArgumentType
 from azure.cli.core.commands.parameters import get_enum_type, get_three_state_flag, tags_type
 from azure.cli.core.commands.parameters import (name_type, get_location_type, resource_group_name_type)
 from ._validators import (validate_env, validate_cosmos_type, validate_resource_id, validate_location,
-                          validate_name, validate_app_name, validate_deployment_name, validate_log_lines,
-                          validate_log_limit, validate_log_since, validate_sku, normalize_sku, validate_jvm_options,
+                          validate_name, validate_app_name, validate_deployment_name, validate_sku,
+                          normalize_sku, validate_jvm_options,
                           validate_vnet, validate_vnet_required_parameters, validate_node_resource_group,
                           validate_tracing_parameters_asc_create, validate_tracing_parameters_asc_update,
                           validate_app_insights_parameters, validate_instance_count, validate_java_agent_parameters,
@@ -18,6 +18,7 @@ from ._validators import (validate_env, validate_cosmos_type, validate_resource_
                           validate_remote_debugging_port, validate_ingress_client_auth_certificates,
                           validate_managed_environment, validate_dataplane_public_endpoint, validate_server_version,
                           validate_planned_maintenance)
+from .log_stream.log_stream_validators import (validate_log_lines, validate_log_limit, validate_log_since)
 from ._validators_enterprise import (only_support_enterprise, validate_builder_resource, validate_builder_create,
                                      validate_source_path, validate_artifact_path, validate_build_create,
                                      validate_build_update, validate_container_registry_create,
@@ -65,6 +66,9 @@ cpu_type = CLIArgumentType(type=str, help='CPU resource quantity. Should be 250m
 memory_type = CLIArgumentType(type=str, help='Memory resource quantity. Should be 512Mi, 1536Mi, 2560Mi, 3584Mi or #Gi, e.g., 1Gi, 3Gi.', validator=validate_memory)
 build_cpu_type = CLIArgumentType(type=str, help='CPU resource quantity. Should be 500m or number of CPU cores.', validator=validate_build_cpu)
 build_memory_type = CLIArgumentType(type=str, help='Memory resource quantity. Should be 512Mi or #Gi, e.g., 1Gi, 3Gi.', validator=validate_build_memory)
+acs_configs_export_path_type = CLIArgumentType(nargs='?',
+                                               const='.',
+                                               help='The path of directory to export the configuration files. Default to the current folder if no value provided.')
 
 
 # pylint: disable=too-many-statements
@@ -893,6 +897,13 @@ def load_arguments(self, _):
         with self.argument_context('spring application-configuration-service git repo {}'.format(scope)) as c:
             c.argument('name', help="Required unique name to label each item of git configs.")
 
+    with self.argument_context('spring application-configuration-service config show') as c:
+        c.argument('config_file_pattern',
+                   options_list=['--config-file-pattern', '--pattern'],
+                   help='Case sensitive. Set the config file pattern in the formats like {application} or {application}/{profile} '
+                        'instead of {application}-{profile}.yml')
+        c.argument('export_path', arg_type=acs_configs_export_path_type)
+
     for scope in ['gateway create', 'api-portal create']:
         with self.argument_context('spring {}'.format(scope)) as c:
             c.argument('instance_count', type=int, help='Number of instance.')
@@ -1106,6 +1117,20 @@ def load_arguments(self, _):
         with self.argument_context(scope) as c:
             c.argument('service', service_name_type)
 
+    def prepare_common_logs_argument(c):
+        c.argument('follow',
+                   options_list=['--follow ', '-f'],
+                   help='The flag to indicate logs should be streamed.',
+                   action='store_true')
+        c.argument('lines',
+                   type=int,
+                   help='Number of lines to show. Maximum is 10000.')
+        c.argument('since',
+                   help='Only return logs newer than a relative duration like 5s, 2m, or 1h. Maximum is 1h')
+        c.argument('limit',
+                   type=int,
+                   help='Maximum kibibyte of logs to return. Ceiling number is 2048.')
+
     with self.argument_context('spring component logs') as c:
         c.argument('name', options_list=['--name', '-n'],
                    help="Name of the component. Find component names from command `az spring component list`")
@@ -1115,21 +1140,10 @@ def load_arguments(self, _):
         c.argument('instance',
                    options_list=['--instance', '-i'],
                    help='Name of an existing instance of the component.')
-        c.argument('follow',
-                   options_list=['--follow ', '-f'],
-                   help='The flag to indicate logs should be streamed.',
-                   action='store_true')
-        c.argument('lines',
-                   type=int,
-                   help='Number of lines to show. Maximum is 10000. Default is 50.')
-        c.argument('since',
-                   help='Only return logs newer than a relative duration like 5s, 2m, or 1h. Maximum is 1h')
-        c.argument('limit',
-                   type=int,
-                   help='Maximum kibibyte of logs to return. Ceiling number is 2048.')
         c.argument('max_log_requests',
                    type=int,
                    help="Specify maximum number of concurrent logs to follow when get logs by all-instances.")
+        prepare_common_logs_argument(c)
 
     with self.argument_context('spring component instance') as c:
         c.argument('component', options_list=['--component', '-c'],
@@ -1138,10 +1152,36 @@ def load_arguments(self, _):
     with self.argument_context('spring job list') as c:
         c.argument('service', service_name_type, validator=only_support_enterprise)
 
-    for scope in ['spring job create', 'spring job update', 'spring job deploy', 'spring job start', 'spring job show', 'spring job delete', 'spring job execution list', 'spring job execution show', 'spring job execution cancel']:
+    for scope in ['spring job create', 'spring job update', 'spring job deploy', 'spring job start', 'spring job show', 'spring job delete']:
         with self.argument_context(scope) as c:
             c.argument('service', service_name_type, validator=only_support_enterprise)
             c.argument('name', name_type, help='The name of job running in the specified Azure Spring Apps instance.')
+
+    with self.argument_context('spring job logs') as c:
+        c.argument('service', service_name_type, validator=only_support_enterprise)
+        c.argument('name', name_type, help='The name of the job running in the specified Azure Spring Apps instance.')
+        c.argument('execution', help='the name of the job execution.')
+        c.argument('all_instances',
+                   help='The flag to indicate get logs for all instances of the job execution.',
+                   action='store_true')
+        c.argument('instance',
+                   options_list=['--instance', '-i'],
+                   help='Name of an existing instance of the job execution. Find instance names from command `az spring job execution instance list`.')
+        c.argument('max_log_requests',
+                   type=int,
+                   help="Specify maximum number of concurrent logs to follow when get logs by all-instances.")
+        prepare_common_logs_argument(c)
+
+    for scope in ['spring job execution list', 'spring job execution show', 'spring job execution cancel']:
+        with self.argument_context(scope) as c:
+            c.argument('service', service_name_type, validator=only_support_enterprise)
+            c.argument('name', name_type, help='The name of job execution running in the specified Azure Spring Apps instance.')
+            c.argument('job', help='The name of job running in the specified Azure Spring Apps instance.')
+
+    with self.argument_context('spring job execution instance list') as c:
+        c.argument('service', service_name_type, validator=only_support_enterprise)
+        c.argument('execution', help='the name of the job execution.')
+        c.argument('job', help='The name of job running in the specified Azure Spring Apps instance.')
 
     with self.argument_context('spring job deploy') as c:
         c.argument('builder', help='(Enterprise Tier Only) Build service builder used to build the executable.', default='default')
