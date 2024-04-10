@@ -1596,7 +1596,7 @@ helps['spring component instance list'] = """
 
 helps['spring job'] = """
     type: group
-    short-summary: (Enterprise Tier Only) Commands to manage job of Azure Spring Apps service.
+    short-summary: (Enterprise Tier Only) Commands to manage jobs of Azure Spring Apps service.
 """
 
 helps['spring job create'] = """
@@ -1604,7 +1604,7 @@ helps['spring job create'] = """
     short-summary: Create a new job in Azure Spring Apps service.
     examples:
     - name: Create a job with the default configuration.
-      text: az spring job create -n MyJob -s MyCluster -g MyResourceGroup
+      text: az spring job create -n job-name -s MyAzureSpringAppsInstance -g MyResourceGroup
 """
 
 helps['spring job update'] = """
@@ -1612,27 +1612,39 @@ helps['spring job update'] = """
     short-summary: Update configurations of a job.
     examples:
     - name: Add an environment variable for the job.
-      text: az spring job update -n MyJob -s MyCluster -g MyResourceGroup --env foo=bar
+      text: az spring job update -n job-name -s MyAzureSpringAppsInstance -g MyResourceGroup --env foo=bar
 """
 
 helps['spring job delete'] = """
     type: command
     short-summary: Delete a job in the Azure Spring Apps.
+    examples:
+    - name: Delete a job
+      text: az spring job delete -n job-name -s MyAzureSpringAppsInstance -g MyResourceGroup
 """
 
 helps['spring job list'] = """
     type: command
     short-summary: List all jobs in the Azure Spring Apps.
+    examples:
+    - name: List jobs
+      text: az spring job list -s MyAzureSpringAppsInstance -g MyResourceGroup
 """
 
 helps['spring job show'] = """
     type: command
     short-summary: Show the details of a job in the Azure Spring Apps.
+    exmaples:
+    - name: Show details of a job
+      text: az spring job show -n job-name -s MyAzureSpringAppsInstance -g MyResourceGroup
 """
 
 helps['spring job start'] = """
     type: command
     short-summary: Start an execution of the job.
+    examples:
+    - name: Start an execution of the job
+      text: az spring job start -n job-name -s MyAzureSpringAppsInstance -g MyResourceGroup
 """
 
 helps['spring job execution'] = """
@@ -1642,25 +1654,34 @@ helps['spring job execution'] = """
 
 helps['spring job execution cancel'] = """
     type: command
-    short-summary: Cancel an execution of the job.
+    short-summary: Cancel a job execution.
+    examples:
+    - name: Cancel a job execution
+      text: az spring job execution cancel -n job-execution-name --job job-name -s MyAzureSpringAppsInstance -g MyResourceGroup
 """
 
 helps['spring job execution show'] = """
     type: command
     short-summary: Show status and results of an execution of the job.
+    examples:
+    - name: Show status and results of an execution of the job
+      text: az spring job execution show -n job-execution-name --job job-name -s MyAzureSpringAppsInstance -g MyResourceGroup
 """
 
 helps['spring job execution list'] = """
     type: command
     short-summary: List all executions of the job.
+    examples:
+    - name: List all executions of the job
+      text: az spring job execution list --job job-name -s MyAzureSpringAppsInstance -g MyResourceGroup
 """
 
 helps['spring job deploy'] = """
     type: command
     short-summary: Deploy artifact to a job and update related configurations.
     examples:
-    - name: Deploy a pre-built jar to a job with jvm options and environment variables.
-      text: az spring job deploy -n MyJob -s MyCluster -g MyResourceGroup --artifact-path app.jar --jvm-options="-XX:+UseG1GC -XX:+UseStringDeduplication" --env foo=bar
+    - name: Deploy a pre-built jar to a job with environment variables.
+      text: az spring job deploy -n job-name -s MyAzureSpringAppsInstance -g MyResourceGroup --artifact-path app.jar --env foo=bar
     - name: Deploy a pre-built jar to a job with build env.
-      text: az spring job deploy -n MyJob -s MyCluster -g MyResourceGroup --artifact-path app.jar --build-env BP_JVM_VERSION=11.*
+      text: az spring job deploy -n job-name -s MyAzureSpringAppsInstance -g MyResourceGroup --artifact-path app.jar --build-env BP_JVM_VERSION=11.*
 """

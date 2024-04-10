@@ -15,8 +15,8 @@ from azure.cli.core.azclierror import (ArgumentUsageError, ClientRequestError,
                                        MutuallyExclusiveArgumentError)
 from azure.cli.core.commands.client_factory import get_subscription_id
 from knack.log import get_logger
-from .vendored_sdks.appplatform.v2024_01_01_preview.models import (ApmReference, CertificateReference)
-from .vendored_sdks.appplatform.v2024_01_01_preview.models._app_platform_management_client_enums import (ApmType, ConfigurationServiceGeneration)
+from .vendored_sdks.appplatform.v2024_05_01_preview.models import (ApmReference, CertificateReference)
+from .vendored_sdks.appplatform.v2024_05_01_preview.models._app_platform_management_client_enums import (ApmType, ConfigurationServiceGeneration)
 
 from ._gateway_constant import (GATEWAY_RESPONSE_CACHE_SCOPE_ROUTE, GATEWAY_RESPONSE_CACHE_SCOPE_INSTANCE,
                                 GATEWAY_RESPONSE_CACHE_SIZE_RESET_VALUE, GATEWAY_RESPONSE_CACHE_TTL_RESET_VALUE)
@@ -685,24 +685,6 @@ def validate_create_app_binding_default_service_registry(cmd, namespace):
         namespace.bind_service_registry = _get_eactly_one_service_registry_resource_id(cmd,
                                                                                        namespace.resource_group,
                                                                                        namespace.service)
-
-
-def validate_envs(namespace):
-    """ Extracts multiple space-separated properties in key[=value] format """
-    if isinstance(namespace.envs, list):
-        properties_dict = {}
-        for item in namespace.envs:
-            properties_dict.update(validate_tag(item))
-        namespace.envs = properties_dict
-
-
-def validate_secret_envs(namespace):
-    """ Extracts multiple space-separated secrets in key[=value] format """
-    if isinstance(namespace.secret_envs, list):
-        secrets_dict = {}
-        for item in namespace.secret_envs:
-            secrets_dict.update(validate_tag(item))
-        namespace.secret_envs = secrets_dict
 
 
 def _get_eactly_one_service_registry_resource_id(cmd, resource_group, service):

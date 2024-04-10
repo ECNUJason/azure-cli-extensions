@@ -7,17 +7,17 @@ import shlex
 import time
 from json import JSONEncoder
 
-from azure.cli.core.azclierror import (ValidationError)
 from azure.cli.core.util import sdk_no_wait
 from knack.log import get_logger
 
-from ._utils import wait_till_end
 from .job_deployable_factory import deployable_selector
+from .._utils import wait_till_end
 from ..vendored_sdks.appplatform.v2024_05_01_preview import models
 
 logger = get_logger(__name__)
 
 LOG_RUNNING_PROMPT = "This command usually takes minutes to run. Add '--verbose' parameter if needed."
+DEFAULT_BUILD_RESULT_ID = "<default>"
 
 
 #  Job's command usually operates an Spring/Job and the Spring/Job/Execution under the job.
@@ -25,50 +25,43 @@ LOG_RUNNING_PROMPT = "This command usually takes minutes to run. Add '--verbose'
 # - A job must consume a path can be deployable, it can be custom container or build result resource id,
 # - _job_deployable_factory determines the deployable type and upload necessary binary/code to the service when constructing the deployable_path.
 
-class MyEncoder(JSONEncoder):
-    def default(self, o):
-        return o.__dict__
-
-
 def job_create(cmd, client, resource_group, service, name):
-    _ensure_job_not_exist(client, resource_group, service, name)
     job_resource = models.JobResource(
         properties=models.JobResourceProperties(
-            trigger_config=models.ManualJobTriggerConfig(
-                trigger_type="Manual"
-            ),
+            trigger_config=models.ManualJobTriggerConfig(),
             source=models.BuildResultUserSourceInfo(
-                type="BuildResult",
-                build_result_id="<default>",
+                build_result_id=DEFAULT_BUILD_RESULT_ID,
             )
         )
     )
 
-    logger.warning("Start to create job '{}'..".format(name))
+    logger.warning(f"Start to create job '{name}'..")
     poller = client.job.begin_create_or_update(resource_group, service, name, job_resource)
     wait_till_end(cmd, poller)
-    logger.warning("Job '{}' is created successfully.".format(name))
+    logger.warning(f"Job '{name}' is created successfully.")
     return job_get(cmd, client, resource_group, service, name)
 
 
 def job_update(cmd, client, resource_group, service, name,
                envs=None,
                secret_envs=None,
-               args=None,
-               ):
+               args=None):
     '''job_update
     Update job with configuration
+    TODO(jiec): Need to test the env and secret_env after backend is fixed.
     '''
     job_resource = client.job.get(resource_group, service, name)
-    existing_secrets = client.job.list_env_secrets(resource_group, service, name)
-    if existing_secrets is not None:
-        job_resource.properties.template.environment_variables.secrets = existing_secrets
+    existing_secret_collection = client.job.list_env_secrets(resource_group, service, name)
+    if existing_secret_collection is not None and existing_secret_collection.value is not None:
+        target_env_list = _update_secrets(job_resource.properties.template.environment_variables,
+                                          existing_secret_collection.value)
+        job_resource.properties.template.environment_variables = target_env_list
     job_resource.properties = _update_job_properties(job_resource.properties, envs, secret_envs, args)
 
-    logger.warning("Start to update job '{}'..".format(name))
+    logger.warning(f"Start to update job '{name}'..")
     poller = client.job.begin_create_or_update(resource_group, service, name, job_resource)
     wait_till_end(cmd, poller)
-    logger.warning("Job '{}' is updated successfully.".format(name))
+    logger.warning(f"Job '{name}' is updated successfully.")
     return job_get(cmd, client, resource_group, service, name)
 
 
@@ -143,55 +136,40 @@ def job_start(cmd, client, resource_group, service, name,
               cpu=None,
               memory=None,
               args=None,
-              wait_until_finished=False
-              ):
-    properties = models.JobExecutionProperties(
-        template=models.JobExecutionTemplate(
-            environment_variables=_update_envs(None, envs, secret_envs),
-            args=_convert_args(args)
-        ),
-        resource_requests=_update_resource_requests(None, cpu, memory)
-    )
+              wait_until_finished=False):
+    job_execution_template = models.JobExecutionTemplate(
+        environment_variables=_update_envs(None, envs, secret_envs),
+        args=_convert_args(args),
+        resource_requests=_update_resource_requests(None, cpu, memory))
 
-    if wait_until_finished == False:
-        return client.job.begin_start(resource_group, service, name, properties)
+    if wait_until_finished is False:
+        return client.job.begin_start(resource_group, service, name, job_execution_template)
     else:
         poller = sdk_no_wait(False, client.job.begin_start,
-                             resource_group, service, name, properties)
+                             resource_group, service, name, job_execution_template)
         execution_name = poller.result().name
-        return _poll_until_job_end(cmd, client, resource_group, service, name, execution_name)
+        return _poll_until_job_end(client, resource_group, service, name, execution_name)
 
 
 def job_execution_cancel(cmd, client,
                          resource_group,
                          service,
-                         job_name,
-                         job_execution_name,
+                         job,
+                         execution,
                          no_wait=False):
     return sdk_no_wait(no_wait, client.job_execution.begin_cancel,
-                       resource_group, service, job_name, job_execution_name)
+                       resource_group, service, job, execution)
 
 
-def job_execution_get(cmd, client, resource_group, service, job_name, job_execution_name):
-    return client.job_execution.get(resource_group, service, job_name, job_execution_name)
+def job_execution_get(cmd, client, resource_group, service, job, execution):
+    return client.job_execution.get(resource_group, service, job, execution)
 
 
-def job_execution_list(cmd, client, resource_group, service, job_name):
-    return client.job_executions.list(resource_group, service, job_name)
+def job_execution_list(cmd, client, resource_group, service, job):
+    return client.job_executions.list(resource_group, service, job)
 
 
-def _ensure_job_not_exist(client, resource_group, service, name):
-    job = None
-    try:
-        job = client.job.get(resource_group, service, name)
-    except Exception:
-        # ignore
-        return
-    if job:
-        raise ValidationError('Job {} already exist, cannot create.'.format(job.id))
-
-
-def _update_job_properties(properties, envs, secret_envs, args):
+def _update_job_properties(properties: models.JobResourceProperties, envs: dict, secret_envs: dict, args: str):
     if envs is None and secret_envs is None and args is None:
         return properties
     if properties is None:
@@ -218,14 +196,31 @@ def _update_job_properties_template(template, envs, secret_envs, args):
     return template
 
 
-def _update_envs(envs, envs_dict, secrets_dict):
+def _update_envs(envs: [models.EnvVar], envs_dict: dict, secrets_dict: dict):
     if envs is None:
-        envs = models.JobExecutionTemplateEnvironmentVariables()
-    if envs_dict is not None:
-        envs.properties = envs_dict
-    if secrets_dict is not None:
-        envs.secrets = secrets_dict
-    return envs
+        envs = []
+    existed_properties = [env for env in envs if env.value is not None]
+    existed_secrets = [env for env in envs if
+                       ((env.secret_value is not None) or (env.secret_value is None and env.value is None))]
+    target_properties = existed_properties
+    target_secrets = existed_secrets
+    if envs_dict is not None and isinstance(envs_dict, dict):
+        target_properties = [models.EnvVar(name=key, value=envs_dict[key]) for key in envs_dict.keys()]
+    if secrets_dict is not None and isinstance(secrets_dict, dict):
+        target_secrets = [models.EnvVar(name=key, secret_value=secrets_dict[key]) for key in secrets_dict.keys()]
+    return target_properties + target_secrets
+
+
+def _update_secrets(envs: [models.EnvVar], secrets: [models.Secret]):
+    if envs is None:
+        envs = []
+    target_properties = [env for env in envs if env.value is not None]
+    existed_secrets = [env for env in envs if
+                       ((env.secret_value is not None) or (env.secret_value is None and env.value is None))]
+    target_secrets = existed_secrets
+    if secrets is not None:
+        target_secrets = [models.EnvVar(name=secret.name, secret_value=secret.value) for secret in secrets]
+    return target_properties + target_secrets
 
 
 def _update_resource_requests(existing, cpu, memory):
@@ -245,21 +240,28 @@ def _update_args(existing, args):
 
 
 def _convert_args(args):
-    if args is not None:
-        return shlex.split(args)
-    return args
+    if args is None:
+        return args
+
+    return shlex.split(args)
 
 
-def _poll_until_job_end(cmd, client, resource_group, service, job_name, job_execution_name):
+def _poll_until_job_end(client, resource_group, service, job_name, job_execution_name):
     while True:
         execution = client.job_execution.get(resource_group, service, job_name, job_execution_name)
         status = execution.status
-        if status == "Completed" or status == "Failed" or status == "Cancelled":
+        if _is_job_execution_in_final_state(status):
             logger.warning(
-                "Job execution '{}' is in final status '{}'. Exiting polling loop.".format(job_execution_name, status))
+                f"Job execution '{job_execution_name}' is in final status '{status}'. Exiting polling loop.")
             return execution
         else:
             logger.warning(
-                "Job execution '{}' is in status '{}'. Polling again in 10 second...".format(job_execution_name,
-                                                                                             status))
+                f"Job execution '{job_execution_name}' is in status '{status}'. Polling again in 10 second...")
         time.sleep(10)
+
+
+def _is_job_execution_in_final_state(status):
+    return status is not None and status in (
+        models.JobExecutionRunningState.COMPLETED,
+        models.JobExecutionRunningState.FAILED,
+        models.JobExecutionRunningState.CANCELED)

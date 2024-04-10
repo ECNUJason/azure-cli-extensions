@@ -35,8 +35,7 @@ from ._validators_enterprise import (only_support_enterprise, validate_builder_r
                                      validate_apm_reference_and_enterprise_tier, validate_cert_reference,
                                      validate_build_cert_reference, validate_acs_create, not_support_enterprise,
                                      validate_create_app_binding_default_application_configuration_service,
-                                     validate_create_app_binding_default_service_registry,
-                                     validate_envs, validate_secret_envs)
+                                     validate_create_app_binding_default_service_registry)
 from ._app_validator import (fulfill_deployment_param, active_deployment_exist,
                              ensure_not_active_deployment, validate_deloy_path, validate_deloyment_create_path,
                              validate_cpu, validate_build_cpu, validate_memory, validate_build_memory,
@@ -47,7 +46,7 @@ from ._app_managed_identity_validator import (validate_create_app_with_user_iden
                                               validate_app_force_set_system_identity_or_warning,
                                               validate_app_force_set_user_identity_or_warning)
 from ._utils import ApiType
-from .vendored_sdks.appplatform.v2024_01_01_preview.models._app_platform_management_client_enums import (CustomizedAcceleratorType, ConfigurationServiceGeneration, SupportedRuntimeValue, TestKeyType, BackendProtocol, SessionAffinity, ApmType, BindingType)
+from .vendored_sdks.appplatform.v2024_05_01_preview.models._app_platform_management_client_enums import (CustomizedAcceleratorType, ConfigurationServiceGeneration, SupportedRuntimeValue, TestKeyType, BackendProtocol, SessionAffinity, ApmType, BindingType)
 
 
 name_type = CLIArgumentType(options_list=[
@@ -1153,8 +1152,8 @@ def load_arguments(self, _):
     with self.argument_context('spring job list') as c:
         c.argument('service', service_name_type, validator=only_support_enterprise)
 
-    for scope in ['spring job create', 'spring job update', 'spring job deploy', 'spring job start', 'spring job show', 'spring job delete', 'spring job execution list', 'spring job execution show', 'spring job execution cancel']:
-        with self.argument_context(scope) as c:
+    for scope in ['job create', 'job update', 'job deploy', 'job start', 'job show', 'job delete']:
+        with self.argument_context(f"spring {scope}") as c:
             c.argument('service', service_name_type, validator=only_support_enterprise)
             c.argument('name', name_type, help='The name of job running in the specified Azure Spring Apps instance.')
 
@@ -1163,20 +1162,27 @@ def load_arguments(self, _):
         c.argument('build_env', build_env_type)
         c.argument('build_cpu', arg_type=build_cpu_type, default="1")
         c.argument('build_memory', arg_type=build_memory_type, default="2Gi")
-        c.argument('source_path', arg_type=source_path_type, validator=validate_source_path)
-        c.argument('artifact_path', help='Deploy the specified pre-built artifact (jar or netcore zip).', validator=validate_artifact_path)
+        c.argument('source_path', arg_type=source_path_type)
+        c.argument('artifact_path', help='Deploy the specified pre-built artifact (jar or netcore zip).')
         c.argument('disable_validation', arg_type=get_three_state_flag(), help='If true, disable jar validation.')
 
     for scope in ['job update', 'job deploy', 'job start']:
-        with self.argument_context('spring {}'.format(scope)) as c:
+        with self.argument_context(f"spring {scope}") as c:
             c.argument('envs', nargs='*',
-                   help='Non-sensitive properties for environment variables. Format "key[=value]" and separated by space.', validator=validate_envs)
+                   help='Non-sensitive properties for environment variables. Format "key[=value]" and separated by space.')
             c.argument('secret_envs', nargs='*',
                    help='Sensitive properties for environment variables. Once put, it will be encrypted and not returned.'
-                        'Format "key[=value]" and separated by space.', validator=validate_secret_envs)
+                        'Format "key[=value]" and separated by space.')
             c.argument('args', help='The arguments of the job execution.')
 
     with self.argument_context('spring job start') as c:
-        c.argument('cpu', type=str, help='CPU resource quantity. Should be 500m or number of CPU cores.', validator=validate_cpu)
-        c.argument('memory', type=str, help='Memory resource quantity. Should be 512Mi or #Gi, e.g., 1Gi, 3Gi.', validator=validate_memory)
+        c.argument('cpu', type=str, help='CPU resource quantity. Should be 500m or number of CPU cores.')
+        c.argument('memory', type=str, help='Memory resource quantity. Should be 512Mi or #Gi, e.g., 1Gi, 3Gi.')
         c.argument('wait_until_finished', help='If true, wait until the job execution is finished.', arg_type=get_three_state_flag(), default=False)
+
+    for scope in ['job execution list', 'job execution show', 'job execution cancel']:
+        with self.argument_context(f"spring {scope}") as c:
+            c.argument('service', service_name_type)
+            c.argument('name', name_type,
+                       help='The name of job execution running in the specified Azure Spring Apps instance.')
+            c.argument('job', help='The name of job running in the specified Azure Spring Apps instance.')
