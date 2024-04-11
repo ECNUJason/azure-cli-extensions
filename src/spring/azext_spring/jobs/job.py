@@ -24,7 +24,7 @@ DEFAULT_BUILD_RESULT_ID = "<default>"
 # - A job must consume a path can be deployable, it can be custom container or build result resource id,
 # - _job_deployable_factory determines the deployable type and upload necessary binary/code to the service when constructing the deployable_path.
 
-def job_create(cmd, client, resource_group, service, name):
+def job_create(cmd, client, resource_group, service, name) -> models.JobResource:
     job_resource = models.JobResource(
         properties=models.JobResourceProperties(
             trigger_config=models.ManualJobTriggerConfig(),
@@ -44,7 +44,7 @@ def job_create(cmd, client, resource_group, service, name):
 def job_update(cmd, client, resource_group, service, name,
                envs=None,
                secret_envs=None,
-               args=None):
+               args=None) -> models.JobResource:
     '''job_update
     Update job with configuration
     TODO(jiec): Need to test the env and secret_env after backend is fixed.

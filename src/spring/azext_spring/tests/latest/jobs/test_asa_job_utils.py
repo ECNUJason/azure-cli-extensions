@@ -140,3 +140,17 @@ expected_update_job_payload = '''
   }
 }
 '''
+
+expected_start_job_payload = '''
+{
+  "environmentVariables": [],
+  "args": [
+    "sleep",
+    "30"
+  ],
+  "resourceRequests": {
+    "cpu": "1",
+    "memory": "512Gi"
+  }
+}
+'''

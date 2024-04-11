@@ -7,7 +7,8 @@
 import json
 import unittest
 
-from azext_spring.jobs.job import (job_create, job_update, _update_args, _update_envs, _update_job_properties,
+from azext_spring.jobs.job import (job_create, job_update, job_start, _update_args, _update_envs,
+                                   _update_job_properties,
                                    _update_secrets,
                                    _is_job_execution_in_final_state)
 from azext_spring.vendored_sdks.appplatform.v2024_05_01_preview.models import (EnvSecretsCollection, EnvVar,
@@ -17,7 +18,7 @@ from azext_spring.vendored_sdks.appplatform.v2024_05_01_preview.models import (E
                                                                                Secret)
 
 from .test_asa_job_utils import (sample_job_resource, sample_job_resource_after_update, expected_create_job_payload,
-                                 expected_update_job_payload)
+                                 expected_update_job_payload, expected_start_job_payload)
 from ..common.test_utils import get_test_cmd
 
 try:
@@ -210,7 +211,7 @@ class TestAsaJobs(unittest.TestCase):
         updated_job = job_update(get_test_cmd(), client_mock, self.resource_group, self.service, self.job_name,
                                  envs={"prop1": "v_prop1"})
         self.assertEquals(json.dumps(updated_job.serialize(keep_readonly=True)),
-                                     json.dumps(sample_job_resource_after_update().serialize(keep_readonly=True)))
+                          json.dumps(sample_job_resource_after_update().serialize(keep_readonly=True)))
 
     def _get_job_for_update_job_mock(self, resource_group, service, name):
         self.counter_job_get_in_test_update_asa_job += 1
@@ -242,6 +243,26 @@ class TestAsaJobs(unittest.TestCase):
         self._verify_group_service_job_name(resource_group, service, name)
         self.assertEquals(json.dumps(JobResource.deserialize(json.loads(expected_update_job_payload)).serialize()),
                           json.dumps(job_resource.serialize()))
+        return None
+
+    def test_job_start(self):
+        client_mock = mock.MagicMock()
+        client_mock.job.begin_start = self._begin_start_for_start_job_mock
+
+        job_start(get_test_cmd(), client_mock, self.resource_group, self.service, self.job_name,
+                  envs={"prop1", "v_prop1"},
+                  secret_envs={"secret1", "v_secret1"},
+                  cpu="1",
+                  memory="512Gi",
+                  args="sleep 30",
+                  wait_until_finished=False)
+
+    def _begin_start_for_start_job_mock(self, resource_group, service, name,
+                                        job_execution_template: JobExecutionTemplate):
+        self._verify_group_service_job_name(resource_group, service, name)
+        self.assertEquals(
+            json.dumps(JobExecutionTemplate.deserialize(json.loads(expected_start_job_payload)).serialize()),
+            json.dumps(job_execution_template.serialize()))
         return None
 
     def _verify_env_var(self, env: EnvVar, name, value, secret_value):
