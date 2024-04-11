@@ -6,10 +6,14 @@
 
 import unittest
 
-from azext_spring.jobs.job import (_update_args, _update_envs, _update_job_properties, _update_secrets,
+from azext_spring.jobs.job import (job_create, _update_args, _update_envs, _update_job_properties, _update_secrets,
                                    _is_job_execution_in_final_state)
 from azext_spring.vendored_sdks.appplatform.v2024_05_01_preview.models import (EnvVar, JobExecutionTemplate,
-                                                                               JobResourceProperties, Secret)
+                                                                               JobResourceProperties,
+                                                                               Secret)
+
+from .test_asa_job_utils import SAMPLE_JOB_RESOURCE
+from ..common.test_utils import get_test_cmd
 
 try:
     import unittest.mock as mock
@@ -160,6 +164,17 @@ class TestAsaJobs(unittest.TestCase):
 
         for status in ("Canceled", "Failed", "Completed"):
             self.assertTrue(_is_job_execution_in_final_state(status))
+
+    @mock.patch('azext_spring.jobs.job.wait_till_end', autospec=True)
+    def test_create_asa_job(self, wait_till_end_mock):
+        wait_till_end_mock.return_value = None
+
+        client_mock = mock.MagicMock()
+        client_mock.job.begin_create_or_update.return_value = None
+
+        client_mock.job.get = lambda resource_group, service, job_name: SAMPLE_JOB_RESOURCE
+
+        job_create(get_test_cmd(), client_mock, "myResourceGroup", "myservice", "test-job")
 
     def _verify_env_var(self, env: EnvVar, name, value, secret_value):
         self.assertIsNotNone(env)
