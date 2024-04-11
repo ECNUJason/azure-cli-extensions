@@ -38,7 +38,7 @@ def job_create(cmd, client, resource_group, service, name):
     poller = client.job.begin_create_or_update(resource_group, service, name, job_resource)
     wait_till_end(cmd, poller)
     logger.warning(f"Job '{name}' is created successfully.")
-    return job_get(cmd, client, resource_group, service, name)
+    return job_get(client, resource_group, service, name)
 
 
 def job_update(cmd, client, resource_group, service, name,
@@ -61,7 +61,7 @@ def job_update(cmd, client, resource_group, service, name,
     poller = client.job.begin_create_or_update(resource_group, service, name, job_resource)
     wait_till_end(cmd, poller)
     logger.warning(f"Job '{name}' is updated successfully.")
-    return job_get(cmd, client, resource_group, service, name)
+    return job_get(client, resource_group, service, name)
 
 
 def job_delete(cmd, client, resource_group, service, name):
@@ -69,7 +69,7 @@ def job_delete(cmd, client, resource_group, service, name):
     return client.job.begin_delete(resource_group, service, name)
 
 
-def job_get(cmd, client, resource_group, service, name):
+def job_get(client, resource_group, service, name):
     return client.job.get(resource_group, service, name)
 
 

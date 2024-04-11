@@ -14,8 +14,7 @@ from azext_spring.vendored_sdks.appplatform.v2024_05_01_preview.models import (E
                                                                                JobResourceProperties,
                                                                                Secret)
 
-from .test_asa_job_expected_resources import EXPECTED_CREATE_JOB_PAYLOAD
-from .test_asa_job_utils import SAMPLE_JOB_RESOURCE
+from .test_asa_job_utils import (SAMPLE_JOB_RESOURCE, EXPECTED_CREATE_JOB_PAYLOAD)
 from ..common.test_utils import get_test_cmd
 
 try:
@@ -194,6 +193,9 @@ class TestAsaJobs(unittest.TestCase):
                               keep_readonly=True)))
         poller_mock = mock.Mock()
         return poller_mock
+
+    def test_update_asa_job(self):
+        pass
 
     def _verify_env_var(self, env: EnvVar, name, value, secret_value):
         self.assertIsNotNone(env)

@@ -3,8 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # -----------------------------------------------------------------------------
-from azext_spring.vendored_sdks.appplatform.v2024_05_01_preview.models import (JobResource)
 import json
+
+from azext_spring.vendored_sdks.appplatform.v2024_05_01_preview.models import (JobResource)
 
 SAMPLE_JOB_RESOURCE_JSON = r'''
 {
@@ -52,3 +53,7 @@ SAMPLE_JOB_RESOURCE_JSON = r'''
 '''
 
 SAMPLE_JOB_RESOURCE = JobResource.deserialize(json.loads(SAMPLE_JOB_RESOURCE_JSON))
+
+EXPECTED_CREATE_JOB_PAYLOAD = r'''
+{"properties": {"source": {"type": "BuildResult", "buildResultId": "<default>"}, "triggerConfig": {"triggerType": "Manual"}}}
+'''
