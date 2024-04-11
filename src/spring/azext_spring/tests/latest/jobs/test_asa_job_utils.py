@@ -52,7 +52,7 @@ sample_job_resource_json_str = r'''
 }
 '''
 
-sample_job_resource = JobResource.deserialize(json.loads(sample_job_resource_json_str))
+sample_job_resource = lambda: JobResource.deserialize(json.loads(sample_job_resource_json_str))
 
 sample_job_resource_after_update_json_str = r'''
 {
@@ -94,7 +94,8 @@ sample_job_resource_after_update_json_str = r'''
   "name": "test-job"
 }
 '''
-sample_job_resource_after_update = json.loads(sample_job_resource_after_update_json_str)
+sample_job_resource_after_update = lambda: JobResource.deserialize(
+    json.loads(sample_job_resource_after_update_json_str))
 
 expected_create_job_payload = '''
 {

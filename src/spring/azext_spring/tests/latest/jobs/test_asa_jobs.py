@@ -180,18 +180,16 @@ class TestAsaJobs(unittest.TestCase):
 
         client_mock = mock.MagicMock()
         client_mock.job.begin_create_or_update = self._mock_begin_create_or_update
-        client_mock.job.get.return_value = sample_job_resource
+        client_mock.job.get.return_value = sample_job_resource()
 
         result_job = job_create(get_test_cmd(), client_mock, self.resource_group, self.service, self.job_name)
-        self.assertEqual(json.dumps(result_job.serialize()), json.dumps(sample_job_resource.serialize()))
+        self.assertEqual(json.dumps(result_job.serialize()), json.dumps(sample_job_resource().serialize()))
 
     def _mock_begin_create_or_update(self, resource_group, service, name, job_resource: JobResource):
         """
         To validate the request payload is expected.
         """
-        self.assertEquals(self.resource_group, resource_group)
-        self.assertEquals(self.service, service)
-        self.assertEquals(self.job_name, name)
+        self._verify_group_service_job_name(resource_group, service, name)
         self.assertEquals(json.dumps(job_resource.serialize(keep_readonly=True)),
                           json.dumps(JobResource.deserialize(json.loads(expected_create_job_payload)).serialize(
                               keep_readonly=True)))
@@ -209,32 +207,28 @@ class TestAsaJobs(unittest.TestCase):
 
         self.counter_job_get_in_test_update_asa_job = 0
 
-        job_update(get_test_cmd(), client_mock, self.resource_group, self.service, self.job_name,
-                   envs={"prop1": "v_prop1"})
+        updated_job = job_update(get_test_cmd(), client_mock, self.resource_group, self.service, self.job_name,
+                                 envs={"prop1": "v_prop1"})
+        self.assertEquals(json.dumps(updated_job.serialize(keep_readonly=True)),
+                                     json.dumps(sample_job_resource_after_update().serialize(keep_readonly=True)))
 
     def _get_job_for_update_job_mock(self, resource_group, service, name):
-        if self.counter_job_get_in_test_update_asa_job == 0:
-            self.counter_job_get_in_test_update_asa_job += 1
+        self.counter_job_get_in_test_update_asa_job += 1
+        if self.counter_job_get_in_test_update_asa_job == 1:
             return self._get_job_for_update_job_mock_0(resource_group, service, name)
         else:
             return self._get_job_for_update_job_mock_1(resource_group, service, name)
 
     def _get_job_for_update_job_mock_0(self, resource_group, service, name):
-        self.assertEquals(self.resource_group, resource_group)
-        self.assertEquals(self.service, service)
-        self.assertEquals(self.job_name, name)
-        return sample_job_resource
+        self._verify_group_service_job_name(resource_group, service, name)
+        return sample_job_resource()
 
     def _get_job_for_update_job_mock_1(self, resource_group, service, name):
-        self.assertEquals(self.resource_group, resource_group)
-        self.assertEquals(self.service, service)
-        self.assertEquals(self.job_name, name)
-        return sample_job_resource_after_update
+        self._verify_group_service_job_name(resource_group, service, name)
+        return sample_job_resource_after_update()
 
     def _list_env_secrets_for_update_job_mock(self, resource_group, service, name):
-        self.assertEquals(self.resource_group, resource_group)
-        self.assertEquals(self.service, service)
-        self.assertEquals(self.job_name, name)
+        self._verify_group_service_job_name(resource_group, service, name)
         return EnvSecretsCollection(
             value=[
                 Secret(
@@ -245,10 +239,7 @@ class TestAsaJobs(unittest.TestCase):
         )
 
     def _begin_create_or_update_for_update_job_mock(self, resource_group, service, name, job_resource: JobResource):
-        print(json.dumps(job_resource.serialize()))
-        self.assertEquals(self.resource_group, resource_group)
-        self.assertEquals(self.service, service)
-        self.assertEquals(self.job_name, name)
+        self._verify_group_service_job_name(resource_group, service, name)
         self.assertEquals(json.dumps(JobResource.deserialize(json.loads(expected_update_job_payload)).serialize()),
                           json.dumps(job_resource.serialize()))
         return None
@@ -262,3 +253,8 @@ class TestAsaJobs(unittest.TestCase):
         elif secret_value is not None:
             self.assertIsNone(env.value)
             self.assertEquals(secret_value, env.secret_value)
+
+    def _verify_group_service_job_name(self, resource_group, service, name):
+        self.assertEquals(self.resource_group, resource_group)
+        self.assertEquals(self.service, service)
+        self.assertEquals(self.job_name, name)
