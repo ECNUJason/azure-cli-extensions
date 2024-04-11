@@ -4,14 +4,17 @@
 # license information.
 # -----------------------------------------------------------------------------
 
+import json
 import unittest
 
 from azext_spring.jobs.job import (job_create, _update_args, _update_envs, _update_job_properties, _update_secrets,
                                    _is_job_execution_in_final_state)
 from azext_spring.vendored_sdks.appplatform.v2024_05_01_preview.models import (EnvVar, JobExecutionTemplate,
+                                                                               JobResource,
                                                                                JobResourceProperties,
                                                                                Secret)
 
+from .test_asa_job_expected_resources import EXPECTED_CREATE_JOB_PAYLOAD
 from .test_asa_job_utils import SAMPLE_JOB_RESOURCE
 from ..common.test_utils import get_test_cmd
 
@@ -33,6 +36,10 @@ class TestAsaJobs(unittest.TestCase):
             "secret2": "secret_value2"
         }
         self.args_str = "random-args sleep 2"
+
+        self.resource_group = "myResourceGroup"
+        self.service = "myService"
+        self.job_name = "test-job"
 
     def test_create_env_list(self):
 
@@ -170,11 +177,23 @@ class TestAsaJobs(unittest.TestCase):
         wait_till_end_mock.return_value = None
 
         client_mock = mock.MagicMock()
-        client_mock.job.begin_create_or_update.return_value = None
+        client_mock.job.begin_create_or_update = self._mock_begin_create_or_update
+        client_mock.job.get.return_value = SAMPLE_JOB_RESOURCE
 
-        client_mock.job.get = lambda resource_group, service, job_name: SAMPLE_JOB_RESOURCE
+        job_create(get_test_cmd(), client_mock, self.resource_group, self.service, self.job_name)
 
-        job_create(get_test_cmd(), client_mock, "myResourceGroup", "myservice", "test-job")
+    def _mock_begin_create_or_update(self, resource_group, service, name, job_resource: JobResource):
+        """
+        To validate the request payload is expected.
+        """
+        self.assertEquals(self.resource_group, resource_group)
+        self.assertEquals(self.service, service)
+        self.assertEquals(self.job_name, name)
+        self.assertEquals(json.dumps(job_resource.serialize(keep_readonly=True)),
+                          json.dumps(JobResource.deserialize(json.loads(EXPECTED_CREATE_JOB_PAYLOAD)).serialize(
+                              keep_readonly=True)))
+        poller_mock = mock.Mock()
+        return poller_mock
 
     def _verify_env_var(self, env: EnvVar, name, value, secret_value):
         self.assertIsNotNone(env)
