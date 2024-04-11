@@ -17,7 +17,7 @@ except ImportError:
     from unittest import mock
 
 
-class TestJobs(unittest.TestCase):
+class TestAsaJobs(unittest.TestCase):
 
     def setUp(self) -> None:
         self.envs_dict = {
