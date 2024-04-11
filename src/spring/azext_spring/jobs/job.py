@@ -5,7 +5,6 @@
 
 import shlex
 import time
-from json import JSONEncoder
 
 from azure.cli.core.util import sdk_no_wait
 from knack.log import get_logger
