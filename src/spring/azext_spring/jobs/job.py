@@ -95,9 +95,11 @@ def job_deploy(cmd, client, resource_group, service, name,
     logger.warning(LOG_RUNNING_PROMPT)
 
     job_resource = client.job.get(resource_group, service, name)
-    existing_secrets = client.job.list_env_secrets(resource_group, service, name)
-    if existing_secrets is not None:
-        job_resource.properties.template.environment_variables.secrets = existing_secrets
+    existing_secret_collection = client.job.list_env_secrets(resource_group, service, name)
+    if existing_secret_collection is not None and existing_secret_collection.value is not None:
+        target_env_list = _update_secrets(job_resource.properties.template.environment_variables,
+                                          existing_secret_collection.value)
+        job_resource.properties.template.environment_variables = target_env_list
     job_resource.properties = _update_job_properties(job_resource.properties, envs, secret_envs, args)
 
     kwargs = {

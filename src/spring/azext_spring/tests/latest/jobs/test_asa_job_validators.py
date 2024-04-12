@@ -7,7 +7,7 @@ import unittest
 from argparse import Namespace
 
 from azext_spring.jobs.job_validators import (validate_job_delete, _validate_job_name, _validate_envs,
-                                              _ensure_job_not_exist,
+                                              _ensure_job_not_exist, validate_job_deploy,
                                               validate_job_get, _validate_secret_envs,
                                               validate_job_create, validate_job_update, validate_job_start,
                                               validate_job_execution_cancel, validate_job_execution_get,
@@ -147,6 +147,26 @@ class TestJobValidators(unittest.TestCase):
         )
 
         validate_job_get(get_test_cmd(), ns)
+
+    @mock.patch('azext_spring.jobs.job_validators.only_support_enterprise', autospec=True)
+    @mock.patch('azext_spring._validators_enterprise.is_enterprise_tier', autospec=True)
+    def test_validate_job_deploy(self, is_enterprise_tier_mock, only_support_enterprise_mock):
+        self._prepare_is_enterprise_mock(only_support_enterprise_mock)
+        is_enterprise_tier_mock.return_value = True
+
+        ns = Namespace(
+            resource_group="fake-rg",
+            service="fake-service",
+            name="fake-job-name",
+            build_env=["BP_JVM_VERSION=17"],
+            envs=["a=v_a", "b=v_b"],
+            secret_envs=["c=v_c", "d=v_d"],
+            artifact_path=".",
+            source_path=None,
+            disable_validation=None,
+        )
+
+        validate_job_deploy(get_test_cmd(), ns)
 
     @mock.patch('azext_spring.jobs.job_validators.only_support_enterprise', autospec=True)
     def test_validate_job_start(self, only_support_enterprise_mock):

@@ -6,7 +6,8 @@ from re import match
 
 from azext_spring._app_validator import (validate_cpu, validate_memory)
 from azext_spring._util_enterprise import (get_client)
-from azext_spring._validators_enterprise import (only_support_enterprise, validate_source_path, validate_artifact_path)
+from azext_spring._validators_enterprise import (only_support_enterprise, validate_source_path, validate_artifact_path,
+                                                 validate_build_env)
 from azure.cli.core.azclierror import InvalidArgumentValueError
 from azure.cli.core.azclierror import (ValidationError)
 from azure.cli.core.commands.validators import validate_tag
@@ -45,6 +46,7 @@ def validate_job_deploy(cmd, namespace):
     _validate_secret_envs(namespace)
     validate_source_path(namespace)
     validate_artifact_path(namespace)
+    validate_build_env(cmd, namespace)
     only_support_enterprise(cmd, namespace)
 
 
