@@ -214,6 +214,9 @@ class TestAsaJobs(unittest.TestCase):
                           json.dumps(sample_job_resource_after_update().serialize(keep_readonly=True)))
 
     def _get_job_for_update_job_mock(self, resource_group, service, name):
+        """
+        client.job.get will be called multiple times when update the job. So use the workaround with a counter to route.
+        """
         self.counter_job_get_in_test_update_asa_job += 1
         if self.counter_job_get_in_test_update_asa_job == 1:
             return self._get_job_for_update_job_mock_0(resource_group, service, name)
