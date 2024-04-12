@@ -39,13 +39,11 @@ class TestAsaJobs(unittest.TestCase):
             "secret2": "secret_value2"
         }
         self.args_str = "random-args sleep 2"
-
         self.resource_group = "myResourceGroup"
         self.service = "myService"
         self.job_name = "test-job"
 
     def test_create_env_list(self):
-
         env_list = _update_envs(None, self.envs_dict, self.secrets_dict)
 
         self.assertEquals(4, len(env_list))

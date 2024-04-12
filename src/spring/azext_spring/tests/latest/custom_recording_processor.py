@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 import re
+
 from azure.cli.testsdk.scenario_tests import RecordingProcessor
 from azure.cli.testsdk.scenario_tests.utilities import is_text_payload
 
@@ -45,3 +46,13 @@ class SpringTestEndpointReplacer(RegexSingleValueReplacer):
     def __init__(self):
         regex_string = '(?<="primaryKey":")[^"]+|(?<="secondaryKey":")[^"]+|(?<="primaryTestEndpoint":")[^"]+|(?<="secondaryTestEndpoint":")[^"]+'
         super(SpringTestEndpointReplacer, self).__init__(re.compile(regex_string, re.IGNORECASE), 'primary', 'fake')
+
+
+class SpringApiVersionReplacer(RecordingProcessor):
+    def process_request(self, request):
+        import re
+        pattern = r"(?<=api-version=)\d{4}-\d{2}-\d{2}(-preview)?"
+        if "/providers/Microsoft.AppPlatform/Spring" in request.uri:
+            request.uri = re.sub(pattern, 'latest', request.uri)
+        # print(f"mason debug request uri: {request.uri}")
+        return request
