@@ -1935,6 +1935,7 @@ class FileService(StorageClient):
             multiple calls to the Azure service and the timeout will apply to
             each call individually.
         '''
+        print("Mason debug in azext_spring_cloud")
         _validate_not_none('share_name', share_name)
         _validate_not_none('file_name', file_name)
         _validate_not_none('local_file_path', local_file_path)

@@ -62,16 +62,14 @@ class AsaJobDeployScnearioTest(ScenarioTest):
         self.assertEqual("BuildResult", job_properties.source.type)
         self.assertIsNone(job_properties.source.version)
 
-    @SpringResourceGroupPreparer(dev_setting_name=SpringTestEnvironmentEnum.STANDARD['resource_group_name'],
-                                 location="eastus")
-    @SpringPreparer(**SpringTestEnvironmentEnum.ENTERPRISE_WITH_TANZU['spring'])
-    @SpringJobNamePreparer()
-    def test_deploy_job_2(self, resource_group, spring, job):
-        self._prepare_kwargs_for_deploy_job(resource_group, spring, job)
-
-        response_in_json = self.cmd(
-            'spring job deploy -n {job} -g {rg} -s {serviceName} --source-path {filePath} '
-            '--build-env {java17}')
+    # @SpringResourceGroupPreparer(dev_setting_name=SpringTestEnvironmentEnum.STANDARD['resource_group_name'],
+    #                              location="eastus")
+    # @SpringPreparer(**SpringTestEnvironmentEnum.ENTERPRISE_WITH_TANZU['spring'])
+    # @SpringJobNamePreparer()
+    # def test_deploy_job_2(self, resource_group, spring, job):
+    def test_deploy_job_2(self):
+        self._prepare_kwargs_for_deploy_job(None, None, None)
+        self.cmd('spring job deploy -n {job} -g {rg} -s {serviceName} --source-path {filePath} --build-env {java17}')
 
     def _prepare_kwargs_for_deploy_job(self, resource_group, spring, job):
         # TODO(jiec): Use the param from the test method

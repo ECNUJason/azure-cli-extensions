@@ -102,6 +102,7 @@ def job_deploy(cmd, client, resource_group, service, name,
         job_resource.properties.template.environment_variables = target_env_list
     job_resource.properties = _update_job_properties(job_resource.properties, envs, secret_envs, args)
 
+    print("Mason debug -3")
     kwargs = {
         'cmd': cmd,
         'client': client,
@@ -117,12 +118,21 @@ def job_deploy(cmd, client, resource_group, service, name,
         'no_wait': no_wait
     }
 
+    print("Mason debug -2")
     deployable = deployable_selector(**kwargs)
+    print("Mason debug -1")
     kwargs['source_type'] = deployable.get_source_type(**kwargs)
     kwargs['total_steps'] = deployable.get_total_deploy_steps(**kwargs)
+    print("Mason debug 0")
     deployable_path = deployable.build_deployable_path(**kwargs)
 
+    print("Mason debug 1")
+    import json
+    print(json.dumps(job_resource.properties.serialize()))
+    print(deployable_path)
+    print(version)
     job_resource.properties = _update_source(job_resource.properties, deployable_path, version)
+    print("Mason debug 2")
 
     poller = sdk_no_wait(no_wait, client.job.begin_create_or_update,
                          resource_group, service, name, job_resource)

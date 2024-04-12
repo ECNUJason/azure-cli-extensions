@@ -222,6 +222,7 @@ def _get_azure_storage_client_info(account_type, sas_url):
     {re.escape("?")}: The ? character is escaped so that it matches a literal question mark in the URL.
     (?P<sas_token>.*): Matches the SAS token in the URL.
     """
+    print("Mason debug: utils _get_azure_storage_client_info line 225")
     regex = compile(f'http(s)?://(?P<account_name>.*?){re.escape(".")}{account_type}{re.escape(".")}(?P<endpoint_suffix>.*?)/(?P<container_name>.*?)/(?P<relative_path>.*?){re.escape("?")}(?P<sas_token>.*)')
     matchObj = search(regex, sas_url)
     account_name = matchObj.group('account_name')
@@ -229,11 +230,12 @@ def _get_azure_storage_client_info(account_type, sas_url):
     container_name = matchObj.group('container_name')
     relative_path = matchObj.group('relative_path')
     sas_token = matchObj.group('sas_token')
-
+    print("Mason debug: utils _get_azure_storage_client_info line 233")
     if not account_name or not container_name or not relative_path or not sas_token:
         raise CLIError(
             "Failed to parse the SAS URL: '{!s}'.".format(sas_url))
 
+    print("Mason debug: utils _get_azure_storage_client_info line 238")
     return account_name, endpoint_suffix, container_name, relative_path, sas_token
 
 

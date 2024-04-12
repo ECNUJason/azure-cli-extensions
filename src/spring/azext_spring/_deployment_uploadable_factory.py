@@ -41,9 +41,15 @@ class FileUpload:
             raise InvalidArgumentValueError('Unexpected artifact file type, must be one of .zip, .tar.gz, .tar, .jar, .war.')
 
     def _upload(self, artifact_path):
+        print("Mason debug: upload 1")
         FileService = get_sdk(self.cli_ctx, ResourceType.DATA_STORAGE, 'file#FileService')
+        print("Mason debug: upload 2")
         file_service = FileService(self.account_name, sas_token=self.sas_token, endpoint_suffix=self.endpoint_suffix)
+        print(f"Mason debug: upload 3 {self.share_name} {self.relative_name}, {artifact_path}")
+        print(type(file_service))
+        print(file_service)
         file_service.create_file_from_path(self.share_name, None, self.relative_name, artifact_path)
+        print("Mason debug: upload 4")
 
 
 class FolderUpload(FileUpload):
@@ -53,8 +59,11 @@ class FolderUpload(FileUpload):
     def upload_and_build(self, source_path, **kwargs):
         if not source_path:
             raise InvalidArgumentValueError('--source-path is not set.')
+        print("Mason debug in upload and build before .")
         artifact_path = self._compress_folder(source_path)
+        print("Mason debug in upload and build after .")
         self._upload(artifact_path)
+        print("Mason debug in upload and build line 60")
 
     def _compress_folder(self, folder):
         file_path = os.path.join(tempfile.gettempdir(), 'build_archive_{}.tar.gz'.format(uuid.uuid4().hex))

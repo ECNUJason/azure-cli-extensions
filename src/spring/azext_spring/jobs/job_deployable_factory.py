@@ -51,6 +51,7 @@ class BuildServiceDeployableBuilder(EmptyDeployableBuilder):
         return 'BuildResult'
 
     def build_deployable_path(self, **kwargs):
+        print("Mason debug in job deployable factory lin 54")
         build_result = self.build_service.build_and_get_result(**kwargs)
         return build_result
 

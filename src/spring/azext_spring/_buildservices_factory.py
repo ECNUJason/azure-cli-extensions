@@ -36,18 +36,24 @@ class BuildService:
 
     def build_and_get_result(self, total_steps, **kwargs):
         logger.warning("[1/{}] Requesting for upload URL.".format(total_steps))
+        print(f"Mason debug: 1/{total_steps}")
         upload_info = self._get_upload_info()
+        print(f"Mason debug: 2/{total_steps}")
         logger.warning("[2/{}] Uploading package to blob.".format(total_steps))
         uploader_selector(cli_ctx=self.cmd.cli_ctx, upload_url=upload_info.upload_url, **kwargs).upload_and_build(**kwargs)
+        print("Mason debug line 44")
         if 'app' in kwargs:
             build_name = kwargs['app']
         elif 'job' in kwargs:
             build_name = kwargs['job']
         else:
             build_name = kwargs['build_name']
+        print("Mason debug line 51")
         logger.warning("[3/{}] Creating or Updating build '{}'.".format(total_steps, build_name))
+        print("Mason debug line 53")
         build_result_id = self._queue_build(upload_info.relative_path, **kwargs)
         logger.warning("[4/{}] Waiting for building container image to finish. This may take a few minutes.".format(total_steps))
+        print("Mason debug line 56")
         self._wait_build_finished(build_result_id)
         return build_result_id
 
